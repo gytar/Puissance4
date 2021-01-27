@@ -1,3 +1,5 @@
+import Elements.*;
+
 public class Main{
     private static final String SPACE = " ";
     public static void main(String[] args) {
@@ -28,8 +30,8 @@ public class Main{
         }
         System.out.println();
 
-        while(!grid.isFull() || !user.win()){
-            // code the game
-        }
+        // while(!grid.isFull() || !user.win()){
+        //     // code the game
+        // }
     }
 }

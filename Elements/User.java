@@ -1,4 +1,6 @@
-import java.sql.*; 
+package Elements;
+
+import java.sql.*;
 
 public class User {
     // variables declaration
@@ -14,10 +16,7 @@ public class User {
 
     
     // getters and setters 
-<<<<<<< HEAD
 
-=======
->>>>>>> folders
     public int getScore() {
         return score;
     }

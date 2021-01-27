@@ -1,3 +1,5 @@
+package Elements;
+
 public class Yellow {
     // speaks for itself
     Token yellow = new Token(); 

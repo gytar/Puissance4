@@ -1,9 +1,8 @@
-public class Grid{
+package Elements;
+
+public class Grid {
     // create the grid from the Case class
-<<<<<<< HEAD:Grid.java
     // getters and setters
-=======
->>>>>>> folders:Elements/Grid.java
     private Case[][] grid = new Case[6][7];
     // getters and setters
     public Case[][] getGrid() {
@@ -13,10 +12,7 @@ public class Grid{
         this.grid = grid;
     }
     // we need a specific location in order to return a specific element from the grid
-<<<<<<< HEAD:Grid.java
 
-=======
->>>>>>> folders:Elements/Grid.java
     public void setGridAtPos(int i, int j, Case sth){
         this.grid[i][j] = sth; 
     }
@@ -24,10 +20,7 @@ public class Grid{
         return grid[i][j];
     }
     // initialisation of the grid (create it)
-<<<<<<< HEAD:Grid.java
 
-=======
->>>>>>> folders:Elements/Grid.java
     public Case[][] initGrid(){
         for(int i = 0; i < 6; i++){
             for(int j = 0; j < 7; j++){

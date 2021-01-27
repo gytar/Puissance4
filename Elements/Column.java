@@ -1,3 +1,5 @@
+package Elements;
+
 public class Column {
     // create the column from the Case class 
     private Case[] column = new Case[7]; 

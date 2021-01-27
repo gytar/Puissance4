@@ -1,3 +1,7 @@
+package IA;
+
+import Elements.Token;
+
 public class IA {
     private String difficulty; 
     private Token token; 
@@ -15,10 +19,7 @@ public class IA {
      * the 'arcade IA': improved 'I suck at this game' IA 
      * add some other elements: it is also a "player" so it has to be put 
      */
-<<<<<<< HEAD:IA.java
     
-=======
->>>>>>> folders:IA/IA.java
 
 
 }
