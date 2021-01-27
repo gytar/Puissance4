@@ -14,6 +14,7 @@ public class User {
 
     
     // getters and setters 
+
     public int getScore() {
         return score;
     }
