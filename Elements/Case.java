@@ -4,8 +4,11 @@ public class Case{
     private int x; 
     private int y;
     // getters and setters 
+<<<<<<< HEAD:Case.java
     
 
+=======
+>>>>>>> folders:Elements/Case.java
     public String getContenant() {
         return contenant;
     }
@@ -25,7 +28,10 @@ public class Case{
         this.y = y;
     }
     // we need to know when a case has something, so we create a function that returns true when it does. 
+<<<<<<< HEAD:Case.java
 
+=======
+>>>>>>> folders:Elements/Case.java
     public boolean isFull(){
         if(!this.contenant.equals(".")){
             return true; 

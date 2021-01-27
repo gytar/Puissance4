@@ -14,7 +14,10 @@ public class User {
 
     
     // getters and setters 
+<<<<<<< HEAD
 
+=======
+>>>>>>> folders
     public int getScore() {
         return score;
     }

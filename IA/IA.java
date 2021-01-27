@@ -15,7 +15,10 @@ public class IA {
      * the 'arcade IA': improved 'I suck at this game' IA 
      * add some other elements: it is also a "player" so it has to be put 
      */
+<<<<<<< HEAD:IA.java
     
+=======
+>>>>>>> folders:IA/IA.java
 
 
 }

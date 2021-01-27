@@ -2,14 +2,20 @@ import java.sql.*;
 
 public class DataBase {
     // variable declaration 
+<<<<<<< HEAD:DataBase.java
 
+=======
+>>>>>>> folders:DataBase/DataBase.java
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
     static final String DB_URL = "jdbc:mariadb://infra.idfor-consulting.fr:31800/groupe2";
 
     static final String USER = "groupe2";
     static final String PASSWORD = "o6iwoQX8VMrtSaf5";
     // we need a user fot the database
+<<<<<<< HEAD:DataBase.java
 
+=======
+>>>>>>> folders:DataBase/DataBase.java
     User user = new User(); 
     
     public void addUserDB(){
@@ -61,7 +67,10 @@ public class DataBase {
 
             stmt1.execute(); 
 
+<<<<<<< HEAD:DataBase.java
             
+=======
+>>>>>>> folders:DataBase/DataBase.java
             // 2nd query
             String sql;
             sql = "UPDATE puis4 SET win = ?, ratio = ?, lose = ? WHERE username = '?' ";
@@ -93,7 +102,10 @@ public class DataBase {
 
             conn = DriverManager.getConnection(DB_URL, USER, PASSWORD); 
             
+<<<<<<< HEAD:DataBase.java
 
+=======
+>>>>>>> folders:DataBase/DataBase.java
             
 
         } catch(SQLException e){
