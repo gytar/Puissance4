@@ -1,6 +1,7 @@
 import java.sql.*; 
 
 public class User {
+    // variables declaration
     private String username; 
     private int score; 
     private Token token;
@@ -12,7 +13,7 @@ public class User {
 
 
     
-
+    // getters and setters 
     public int getScore() {
         return score;
     }

@@ -1,4 +1,5 @@
 public class Yellow {
+    // speaks for itself
     Token yellow = new Token(); 
 
     public Token initYellowToken(){

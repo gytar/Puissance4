@@ -1,4 +1,5 @@
 public class Red {
+    // the code speaks for itself
     Token red = new Token(); 
 
     public Token initRedToken(){
