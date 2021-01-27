@@ -27,5 +27,9 @@ public class Main{
             System.out.print(SPACE + column.getColumnAtId(i) + SPACE);
         }
         System.out.println();
+
+        while(!grid.isFull() || !user.win()){
+            // code the game
+        }
     }
 }

@@ -1,24 +1,28 @@
 public class Grid{
-    private String[][] grid = new String[6][7];
+    private Case[][] grid = new Case[6][7];
 
-    public String[][] getGrid() {
+    public Case[][] getGrid() {
         return grid;
     }
-    public void setGrid(String[][] grid) {
+    public void setGrid(Case[][] grid) {
         this.grid = grid;
     }
 
-    public void setGridAtPos(int i, int j, String sth){
+    public void setGridAtPos(int i, int j, Case sth){
         this.grid[i][j] = sth; 
     }
-    public String getGridAtPos(int i, int j){
+    public Case getGridAtPos(int i, int j){
         return grid[i][j];
     }
 
-    public String[][] initGrid(){
+    public Case[][] initGrid(){
         for(int i = 0; i < 6; i++){
             for(int j = 0; j < 7; j++){
-                this.grid[i][j] = "." + i; 
+                this.grid[i][j] = new Case();
+                this.grid[i][j].setContenant("." + i);
+                this.grid[i][j].setX(i);
+                this.grid[i][j].setY(j);
+
             }
         }
         return grid; 
