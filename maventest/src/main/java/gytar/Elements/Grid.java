@@ -1,4 +1,4 @@
-package Elements;
+package gytar.Elements;
 
 public class Grid {
     // create the grid from the Case class

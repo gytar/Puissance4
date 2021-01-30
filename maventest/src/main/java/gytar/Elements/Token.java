@@ -1,4 +1,4 @@
-package Elements;
+package gytar.Elements;
 
 public class Token {
     private String color; 

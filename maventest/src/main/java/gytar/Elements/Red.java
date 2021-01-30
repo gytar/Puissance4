@@ -1,4 +1,4 @@
-package Elements;
+package gytar.Elements;
 
 public class Red {
     // the code speaks for itself

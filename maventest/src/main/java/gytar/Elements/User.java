@@ -1,6 +1,4 @@
-package Elements;
-
-import java.sql.*;
+package gytar.Elements;
 
 public class User {
     // variables declaration

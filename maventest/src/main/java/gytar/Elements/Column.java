@@ -1,4 +1,4 @@
-package Elements;
+package gytar.Elements;
 
 public class Column {
     // create the column from the Case class 

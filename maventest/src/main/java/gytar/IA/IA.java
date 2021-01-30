@@ -1,6 +1,6 @@
-package IA;
+package gytar.IA;
 
-import Elements.Token;
+import gytar.Elements.Token;
 
 public class IA {
     private String difficulty; 
@@ -12,7 +12,7 @@ public class IA {
     }
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
-    }
+    } 
     /** 
      * To Code: 
      * the 'I suck at this game IA' : picks a random number between 0 and 6 and returns it 
