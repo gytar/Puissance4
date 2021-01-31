@@ -36,25 +36,20 @@ public class Main{
         System.out.println();
 
         User user = new User();
-        DataBase data = new DataBase();  
+        Auth auth = new Auth();   
         Scanner sc = new Scanner(System.in); 
 
+
+        user = auth.Connection(); 
+
+        System.out.println("username: " + user.getUsername());
+        System.out.println("password: " + user.getPassword());
+        System.out.println("wins: " + user.getWinnings());
+        System.out.println("lost: " + user.getLosings());
+        System.out.println("ratio: " + user.getRatio());
+        System.out.println("games played: " + user.getGamePlayed());
         
-        System.out.print("enter your username: ");
-        user.setUsername(sc.nextLine());
-        System.out.print("enter password: ");
-        user.setPassword(sc.nextLine());
-
-        String password = user.getPassword(); 
-        String username = user.getUsername();
-
-        data.addUserDB(username, password);
 
         sc.close();
-        // while(!grid.isFull() || !user.win()){
-        //     // code the game
-        // }
-
-        
     }
 }
