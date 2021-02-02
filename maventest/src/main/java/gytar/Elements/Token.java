@@ -15,5 +15,18 @@ public class Token {
     public void setNum(int num) {
         this.num = num;
     }
-    
+    public void initYellowToken(){
+        this.color = "Y";
+        this.num = 0; 
+    }
+
+    public void initRedToken(){
+        this.color = "R";
+        this.num = 1; 
+    }
+
+    public void printToken(){
+        System.out.println(this.color + " " + this.num);
+
+    }
 }

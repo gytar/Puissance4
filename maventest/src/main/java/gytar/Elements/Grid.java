@@ -13,8 +13,8 @@ public class Grid {
     }
     // we need a specific location in order to return a specific element from the grid
 
-    public void setGridAtPos(int i, int j, Case sth){
-        this.grid[i][j] = sth; 
+    public void setGridAtPos(int i, int j, Token t){
+        this.grid[i][j].setContenant(t.getColor()); 
     }
     public Case getGridAtPos(int i, int j){
         return grid[i][j];
