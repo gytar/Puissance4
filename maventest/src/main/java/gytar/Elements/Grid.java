@@ -26,8 +26,8 @@ public class Grid {
             for(int j = 0; j < 7; j++){
                 this.grid[i][j] = new Case();
                 this.grid[i][j].setContenant(".");
-                this.grid[i][j].setX(i);
-                this.grid[i][j].setY(j);
+                this.grid[i][j].setX(j);
+                this.grid[i][j].setY(i);
             }
         }
         return grid; 

@@ -27,8 +27,6 @@ public class Column {
             column[i].setContenant(".");
         }
     }
-
     // créer fonction est pleine
     // créer fonction impression
-    
 }

@@ -21,13 +21,10 @@ public class Main{
         red.printToken();
         yellow.printToken();
         grid.printGrid();
-
-        System.out.println();
-        grid.setGridAtPos(0, 0, red);
-        grid.printGrid();
-    
-        // User user = new User();
-        // Auth auth = new Auth();
-        // user = auth.Connection(); 
+        
+        User user = new User();
+        Auth auth = new Auth();
+        user = auth.Connection(); 
     }
 }
+

@@ -6,6 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mindrot.BCrypt;
+
 
 
 public class DataBase {
@@ -29,15 +31,24 @@ public class DataBase {
             conn = DriverManager.getConnection(DB_URL, USER, PASSWORD); 
 
             System.out.println("Creating Statement...");
-            String sql; 
+            String sql;
+            String hashed = BCrypt.hashpw(password, BCrypt.gensalt(10));
             sql = "INSERT INTO puis4 (username, password) VALUES (?, ?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
-            stmt.setString(2, password);
+            stmt.setString(2, hashed);
             
             stmt.execute();
 
-            System.out.println("elements added");
+            System.out.println(hashed);
+
+            if (BCrypt.checkpw(username, hashed)){
+                System.out.println("It matches");
+                System.out.println("elements added");
+            }
+            else{
+	            System.out.println("It does not match");
+            }
 
 
         } catch(SQLException e){
@@ -136,7 +147,7 @@ public class DataBase {
     public User getUserData(String username){
         User user = new User(); 
         Connection conn = null; 
-
+        String hashed = ""; 
         try{
             Class.forName(JDBC_DRIVER);
             
@@ -149,12 +160,13 @@ public class DataBase {
             ResultSet rs = stmt.executeQuery(); 
             while(rs.next()){
                 user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
+                hashed = (rs.getString("password"));
                 user.setWinnings(rs.getInt("win"));
                 user.setLosings(rs.getInt("lose"));
                 user.setRatio(rs.getFloat("ratio"));
                 user.setGamePlayed(user.getWinnings() + user.getLosings());
             }
+            BCrypt.checkpw();
             rs.close();
             stmt.close();
             conn.close();
