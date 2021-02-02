@@ -44,6 +44,7 @@ public class Grid {
     }
     // cherche à savoir si la grille est pleine
     public boolean isFull(){
+<<<<<<< HEAD
 
         //déclaration d'un integer qui compte les points, s'il y en a aucun, c'est que la grille est pleine
         int countDots = 0; 
@@ -59,5 +60,18 @@ public class Grid {
             }
         }
         return (countDots == 0); // si 0 c'est plein. 
+=======
+        boolean full = true; 
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 7; j++){
+                if(this.grid[i][j].isFull() == false){
+                    break;
+                } else {
+                    full = false; 
+                }
+            }
+        }
+        return full; 
+>>>>>>> 8dacb61 (game almost done)
     }
 }
