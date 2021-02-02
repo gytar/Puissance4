@@ -1,7 +1,5 @@
 package gytar.Elements;
 
-import java.io.Console;
-
 public class Grid {
     // create the grid from the Case class
     // getters and setters

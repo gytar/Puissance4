@@ -2,7 +2,7 @@ package gytar.Elements;
 
 public class Yellow {
     // speaks for itself
-    Token yellow = new Token(); 
+    Token yellow = new Token();
 
     public Token initYellowToken(){
         this.yellow.setColor("Y");
@@ -15,5 +15,8 @@ public class Yellow {
     public String color(){
         return this.yellow.getColor();
     }
-    
+    public void printY (){
+        System.out.println(color() + " " + num());
+
+    }
 }

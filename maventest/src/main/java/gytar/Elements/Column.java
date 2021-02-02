@@ -24,6 +24,7 @@ public class Column {
             column[i] = new Case(); 
             // here setX() is used only, because the rest is not needed. 
             column[i].setX(i);
+            column[i].setContenant(".");
         }
     }
 

@@ -15,5 +15,7 @@ public class Red {
     public String color(){
         return this.red.getColor();
     }
-    
+    public void printR(){
+        System.out.println(color() + " " + num());
+    }
 }

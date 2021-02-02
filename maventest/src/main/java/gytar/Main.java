@@ -13,15 +13,17 @@ public class Main{
         Column column = new Column();
         Red r = new Red(); 
         Yellow y = new Yellow(); 
-        // initialisation des objets
+       
         grid.initGrid();
-        
+        column.initColumn();
+        r.initRedToken();
+        y.initYellowToken(); 
+
+        r.printR();
+        y.printY();
         grid.printGrid();
 
-        column.initColumn();
 
-        r.initRedToken();
-        y.initYellowToken();
     
         User user = new User();
         Auth auth = new Auth();   
