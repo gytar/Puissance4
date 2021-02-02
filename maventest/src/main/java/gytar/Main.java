@@ -35,16 +35,21 @@ public class Main{
 
         String color;
         int turn = 0; 
-        boolean win = false; 
-
+        boolean win = false;
+        
+        User user = new User();
+        Auth auth = new Auth();
+        user = auth.Connection(); 
+        
         while((win == false) || grid.isFull()) {
             
             
             color = turn % 2 == 0 ? "R" : "Y"; 
 
+            System.out.print(color + "'s turn! \nEnter choice: ");
+            int userChoice = sc.nextInt();
+
             if(color.equals("R")){
-                System.out.print(color + "'s turn! \nEnter choice: ");
-                int userChoice = sc.nextInt();
                 for(int i = 0; i < 6; i++){
                     if(grid.getGridAtPos(i, userChoice).getContenant().equals(".")){
                         grid.setGridAtPos(i, userChoice, red);
@@ -54,8 +59,6 @@ public class Main{
             }
 
             if(color.equals("Y")){
-                System.out.print(color + "'s turn! \nEnter choice: ");
-                int userChoice = sc.nextInt();
                 for(int i = 0; i < 6; i++){
                     if(grid.getGridAtPos(i, userChoice).getContenant().equals(".")){
                         grid.setGridAtPos(i, userChoice, yellow);
@@ -77,12 +80,17 @@ public class Main{
                 win = true; 
             }
 
+            if(grid.isFull()){
+                System.out.println("It's a draw");
+                break;
+            }
+
             turn ++; 
         }
-    }    
+        
+       
+        
 
-
-        // User user = new User();
-        // Auth auth = new Auth();''
-        // user = auth.Connection(); 
+        
+    }         
 }
