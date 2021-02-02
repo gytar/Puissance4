@@ -26,7 +26,6 @@ public class Auth {
             }
         }
         
-       
         return user; 
     }
 
@@ -79,7 +78,5 @@ public class Auth {
 
         return newUser; 
     }
-
-    
 
 }

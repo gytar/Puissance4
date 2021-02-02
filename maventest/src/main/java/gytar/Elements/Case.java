@@ -30,9 +30,9 @@ public class Case {
 
     public boolean isFull(){
         if(!this.contenant.equals(".")){
-            return true; 
-        } else {
             return false; 
+        } else {
+            return true; 
         }
     }
 }
