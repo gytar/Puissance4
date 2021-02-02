@@ -26,8 +26,8 @@ public class Grid {
             for(int j = 0; j < 7; j++){
                 this.grid[i][j] = new Case();
                 this.grid[i][j].setContenant(".");
-                this.grid[i][j].setX(i);
-                this.grid[i][j].setY(j);
+                this.grid[i][j].setX(j);
+                this.grid[i][j].setY(i);
             }
         }
         return grid; 
@@ -44,18 +44,16 @@ public class Grid {
     }
     
     public boolean isFull(){
-        boolean full = false; 
+        boolean full = true; 
         for(int i = 0; i < 6; i++){
             for(int j = 0; j < 7; j++){
                 if(this.grid[i][j].isFull() == false){
                     break;
-                } else{
-                    full = true; 
-                    continue;
+                } else {
+                    full = false; 
                 }
             }
         }
-        
         return full; 
     }
 }

@@ -28,6 +28,9 @@ public class Column {
         }
     }
 
+    public void printColumn(){
+        
+    }
     // créer fonction est pleine
     // créer fonction impression
     
