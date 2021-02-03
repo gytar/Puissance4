@@ -34,7 +34,10 @@ public class IA {
      */
     
     public int chooseNumber(){
+<<<<<<< HEAD
         // l'IA choisi un nombre au hasard entre 1 et 7
+=======
+>>>>>>> 9d72c3a (IA, game, and all done)
         int number = 1 + (int) (Math.random() * 7);
         return number; 
     }
