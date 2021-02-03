@@ -3,6 +3,8 @@ package gytar.Elements;
 public class Token {
     private String color; 
     private int num; 
+
+    
     public String getColor() {
         return color;
     }
