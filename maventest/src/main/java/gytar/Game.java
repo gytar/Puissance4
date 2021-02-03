@@ -318,13 +318,6 @@ public class Game {
                     userChoice -= 1; 
                     break; 
                 }
-                
-                
-                
-                // si c'est un digit, alors on converti
-                
-                
-                
             }
             
             // tour du joueur rouge
