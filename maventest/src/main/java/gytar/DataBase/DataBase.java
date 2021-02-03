@@ -106,6 +106,12 @@ public class DataBase {
         Connection conn = null;
         try{
             Class.forName(JDBC_DRIVER);
+<<<<<<< HEAD
+=======
+            
+            System.out.println("Connecting to data base...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD); 
+>>>>>>> 1e4df34 (cryptage)
             
             System.out.println("Connecting to data base...");
             conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -115,7 +121,11 @@ public class DataBase {
             List<String> passwords = new ArrayList<>();
             sql = "SELECT username, password FROM puis4;";
             // do query
+<<<<<<< HEAD
             Statement stmt = conn.createStatement();
+=======
+            Statement stmt = conn.createStatement(); 
+>>>>>>> 1e4df34 (cryptage)
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
@@ -145,9 +155,14 @@ public class DataBase {
     }
 
     public User getUserData(String username){
+<<<<<<< HEAD
         User user = new User();
         Connection conn = null;
 
+=======
+        User user = new User(); 
+        Connection conn = null;  
+>>>>>>> 1e4df34 (cryptage)
         try{
             Class.forName(JDBC_DRIVER);
 
@@ -175,7 +190,12 @@ public class DataBase {
         } catch (Exception e){
             e.printStackTrace();
         }
+<<<<<<< HEAD
 
         return user;
+=======
+        
+        return user; 
+>>>>>>> 1e4df34 (cryptage)
     }
 }
