@@ -39,7 +39,9 @@ public class Auth {
     
             String password = user.getPassword(); 
             String username = user.getUsername();
-    
+            //String hashedPassword = user.getHashedPassword();
+
+            //(BCrypt.checkpw(hashed)
             if(data.getUserIdConnection(username, password) == true){
                 System.out.println("you are connected!");
                 user = data.getUserData(username);
@@ -65,13 +67,12 @@ public class Auth {
 
     public User createAnAccount(){
         User newUser = new User(); 
-        //String hashed = "";
         System.out.println("Please register some infos");
         newUser.setUsername(console.readLine("Username: ").trim());
         newUser.setPassword(new String(console.readPassword("Password: ")));
 
         String username = newUser.getUsername();
-        String password = newUser.getPassword(); 
+        String password = newUser.getPassword();
         data.addUserDB(username, password);
 
         System.out.println("You have been added to the game!");
@@ -79,5 +80,4 @@ public class Auth {
 
         return newUser; 
     }
-
 }

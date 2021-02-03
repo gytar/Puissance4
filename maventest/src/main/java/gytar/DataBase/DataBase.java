@@ -32,23 +32,24 @@ public class DataBase {
 
             System.out.println("Creating Statement...");
             String sql;
-            String hashed = BCrypt.hashpw(password, BCrypt.gensalt(10));
+            user.setHashedPassword(BCrypt.hashpw(password, BCrypt.gensalt(10)));
             sql = "INSERT INTO puis4 (username, password) VALUES (?, ?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
-            stmt.setString(2, hashed);
+            stmt.setString(2, user.getHashedPassword());
             
             stmt.execute();
 
-            System.out.println(hashed);
+            System.out.println(user.getHashedPassword());
 
-            if (BCrypt.checkpw(username, hashed)){
+            if (BCrypt.checkpw(password, user.getHashedPassword())){
                 System.out.println("It matches");
                 System.out.println("elements added");
             }
             else{
 	            System.out.println("It does not match");
             }
+            
 
 
         } catch(SQLException e){
@@ -105,7 +106,7 @@ public class DataBase {
         Connection conn = null; 
         try{
             Class.forName(JDBC_DRIVER);
-
+            
             System.out.println("Connecting to data base...");
             conn = DriverManager.getConnection(DB_URL, USER, PASSWORD); 
             
@@ -115,7 +116,7 @@ public class DataBase {
             sql = "SELECT username, password FROM puis4;";
             // do query
             Statement stmt = conn.createStatement(); 
-            ResultSet rs = stmt.executeQuery(sql); 
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 usernames.add(rs.getString("username")); 
@@ -123,14 +124,13 @@ public class DataBase {
             }
             
             for(int i = 0; i < usernames.size(); i++){
-                if((usernames.get(i).equals(username)) && passwords.get(i).equals(password)){
+                if((usernames.get(i).equals(username)) && (BCrypt.checkpw(password, passwords.get(i)))){
                     System.out.println("found combo " + username + ", " + password);
                     connected = true; 
                     break; 
                 }
             }
-
-
+            
             rs.close();
             stmt.close();
             conn.close();
@@ -146,8 +146,7 @@ public class DataBase {
 
     public User getUserData(String username){
         User user = new User(); 
-        Connection conn = null; 
-        String hashed = ""; 
+        Connection conn = null;  
         try{
             Class.forName(JDBC_DRIVER);
             
@@ -160,13 +159,13 @@ public class DataBase {
             ResultSet rs = stmt.executeQuery(); 
             while(rs.next()){
                 user.setUsername(rs.getString("username"));
-                hashed = (rs.getString("password"));
+                user.setPassword(rs.getString("password"));
                 user.setWinnings(rs.getInt("win"));
                 user.setLosings(rs.getInt("lose"));
                 user.setRatio(rs.getFloat("ratio"));
                 user.setGamePlayed(user.getWinnings() + user.getLosings());
             }
-            BCrypt.checkpw();
+
             rs.close();
             stmt.close();
             conn.close();
@@ -175,7 +174,7 @@ public class DataBase {
         } catch (Exception e){
             e.printStackTrace();
         }
-
+        
         return user; 
     }
 }
