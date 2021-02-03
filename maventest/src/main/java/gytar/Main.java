@@ -2,11 +2,18 @@ package gytar;
 
 import gytar.DataBase.*;
 import gytar.Elements.*;
-import gytar.IA.IA;
+import gytar.IA.*;
 
-import java.math.*;
 
 public class Main{
+    /**
+     * --- Puissance 4 - Projet Cyberfull --- 
+     * All credits to Benjamin Dupuis, Alexis Pons, 
+     * Jordan Kraria and Guillaume Perrot
+     * 
+     * Special thanks to Eric Moleon for supervising the project
+     * 
+     */
     public static void main(String[] args) {
         // déclaration des objets
         Grid grid = new Grid(); 
@@ -15,7 +22,8 @@ public class Main{
         Token yellow = new Token(); 
         Game g = new Game(); 
         User user = new User();
-        IA ia = new IA(); 
+        Auth auth = new Auth();
+        IA iaTeube = new IA(); 
         
         // initialisation des elements
         grid.initGrid();
@@ -23,12 +31,13 @@ public class Main{
         red.initRedToken();
         yellow.initYellowToken();
 
+        user = auth.Connection(); 
         // attribution des jetons
         user.setToken(red); 
-        ia.setToken(yellow);
+        iaTeube.setToken(yellow);
 
         // ON JOUE !!!
-        g.theGame(grid, red, yellow, user, ia);
+        g.theGame(grid, red, yellow, user, iaTeube);
         
         
     }  

@@ -10,7 +10,7 @@ public class User {
     private int gamePlayed; 
     private int winnings; 
     private int losings; 
-
+    private String hashedPassword;
 
     
     // getters and setters 
@@ -63,7 +63,12 @@ public class User {
     public int getGamePlayed() {
         return gamePlayed;
     }
-
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
     // functions
     public float calculateRatio(){
         this.ratio = this.winnings / this.gamePlayed; 
