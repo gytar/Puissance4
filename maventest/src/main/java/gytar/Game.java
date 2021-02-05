@@ -4,9 +4,10 @@ import java.util.*;
 
 import gytar.Elements.*;
 import gytar.IA.*;
+import gytar.DataBase.*;
 
 public class Game {
-
+    DataBase data = new DataBase(); 
     public void theGame(Grid grid, Token red, Token yellow, User user, IA ia){
 
 
@@ -87,6 +88,9 @@ public class Game {
 
                 // on calcule le ratio
                 user.calculateRatio(); 
+                // on ajoute le score à la base de données 
+                data.addScoreToDB(user.getUsername(), user.getWinnings(), user.getLosings(), user.getRatio());
+
                 win = true;
 
             }
@@ -99,6 +103,9 @@ public class Game {
                 user.setLosings(losePlusUn);
                 int gamePlayedPlusUn = user.getGamePlayed() + 1; 
                 user.setGamePlayed(gamePlayedPlusUn);
+                // on ajoute le score à la base de données
+                data.addScoreToDB(user.getUsername(), user.getWinnings(), user.getLosings(), user.getRatio());
+
                 win = true; 
             }
 
