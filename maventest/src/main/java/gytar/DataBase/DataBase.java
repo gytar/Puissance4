@@ -59,7 +59,7 @@ public class DataBase {
         }
     }
 
-    public void addScoreToDB(String username, int win, int lost, float ratio){
+    public void addScoreToDB(String username, int win, int lost, double ratio){
         Connection conn = null; 
         try{
             Class.forName(JDBC_DRIVER); 
@@ -82,7 +82,7 @@ public class DataBase {
             sql = "UPDATE puis4 SET win = ?, ratio = ?, lose = ? WHERE username = ? ";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, win); 
-            stmt.setFloat(2, ratio);
+            stmt.setDouble(2, ratio);
             stmt.setInt(3, lost);
             stmt.setString(4, username);
             
