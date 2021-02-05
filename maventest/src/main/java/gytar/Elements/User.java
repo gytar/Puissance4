@@ -6,7 +6,7 @@ public class User {
     private int score; 
     private Token token;
     private String password; 
-    private float ratio;
+    private double ratio;
     private int gamePlayed; 
     private int winnings; 
     private int losings; 
@@ -39,10 +39,10 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setRatio(float ratio) {
+    public void setRatio(double ratio) {
         this.ratio = ratio;
     }
-    public float getRatio() {
+    public double getRatio() {
         return ratio;
     }
     public void setLosings(int losings) {
@@ -70,8 +70,8 @@ public class User {
         this.hashedPassword = hashedPassword;
     }
     // functions
-    public float calculateRatio(){
-        this.ratio = this.winnings / this.gamePlayed; 
+    public double calculateRatio(){
+        this.ratio = (double)this.winnings / ((double)this.winnings + (double)this.losings); 
         return this.ratio;
     }
 

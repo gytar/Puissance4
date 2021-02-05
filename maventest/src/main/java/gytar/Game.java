@@ -7,14 +7,24 @@ import gytar.IA.*;
 import gytar.DataBase.*;
 
 public class Game {
-    DataBase data = new DataBase(); 
+    DataBase data = new DataBase();
+    
+    // compte les cases vides dans la colonne que l'utilisateur choisit
+    public int columnCount(int userChoice, Grid grid){
+        int columnCount = 0; 
+        for(int i = 0; i < 6; i++){
+            if(grid.getGridAtPos(i, userChoice).getContenant().equals(".")){
+                columnCount++;
+            }
+        }
+        return columnCount; 
+    }
     public void theGame(Grid grid, Token red, Token yellow, User user, IA ia){
-
-
         Scanner sc  = new Scanner(System.in);  
 
         String color;
         int turn = 0;
+        // nombre aléatoire, aurait pu être n'importe quel chiffre hors [1,7]
         int userChoice = 579435;
         String userInput;
         String[] digits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
@@ -31,34 +41,40 @@ public class Game {
             // tant que vrai, on demande à l'utilisateur de saisir un chiffre
             
             while(true){
-                System.out.println("pick a number 1-7");
-
+                
                 if(color.equals("R")){
-                    System.out.print(user.getUsername() + "'s turn! \nEnter choice: ");
+                    
+                    System.out.print(user.getUsername() + "'s turn! \nEnter choice (1-7): ");
                     userInput = sc.nextLine();
                     for(int i = 0; i < digits.length; i++){
                         if(userInput.equals(digits[i])){
+                            // si c'est dans le tableau de chiffres, on le traduit en integer pour la suite.
                             userChoice = Integer.parseInt(userInput); 
-                            System.out.println(userChoice);
+                            // on enlève 1 pour le jeu
+                            userChoice -= 1; 
                         }
+                    }                
+                    //si c'est le bon chiffre et qu'on a au moins une case vide, on sort de la boucle
+                    if(0 <= userChoice && userChoice <= 6 && 
+                       columnCount(userChoice, grid) != 0) {
+                        break; 
                     }
-                    
-                    //si c'est le bon chiffre, on sort de la boucle
-                    if(1 <= userChoice && userChoice <= 7) {
-                    userChoice -= 1; 
-                    break; 
-                    }
+
                 } else {
                     System.out.println("IA's turn!");
                     userChoice = ia.chooseNumber(); 
-                    userChoice -= 1; 
-                    break; 
+                    userChoice -= 1;
+                    if(columnCount(userChoice, grid) != 0) {
+                        break; 
+                        }
+                    
                 }
             }
             
-            // tour du joueur rouge
+            // tour du joueur rouge (utilisateur)
             if(color.equals("R")){
                 for(int i = 0; i < 6; i++){
+                    // dès qu'on a une case vide, on ajoute le pion
                     if(grid.getGridAtPos(i, userChoice).getContenant().equals(".")){
                         grid.setGridAtPos(i, userChoice, red);
                         break;
@@ -66,7 +82,7 @@ public class Game {
                 }
             }
 
-            // tour du joueur jaune
+            // tour du joueur jaune (IA)
             if(color.equals("Y")){
                 for(int i = 0; i < 6; i++){
                     if(grid.getGridAtPos(i, userChoice).getContenant().equals(".")){
@@ -75,6 +91,8 @@ public class Game {
                     }
                 }
             } 
+        
+            grid.printGrid();
 
             // test si l'utilisateur gagne
             if(winningCondition(grid, red)){
@@ -88,24 +106,30 @@ public class Game {
 
                 // on calcule le ratio
                 user.calculateRatio(); 
+                
                 // on ajoute le score à la base de données 
                 data.addScoreToDB(user.getUsername(), user.getWinnings(), user.getLosings(), user.getRatio());
-
+                
+                // on déclare vrai la valeur win pour sortir du jeu
                 win = true;
 
             }
 
             //test si l'IA gagne
             if(winningCondition(grid, yellow)){
-                System.out.println("IA wins !");
+                System.out.println("IA wins!");
                 int losePlusUn = user.getLosings() + 1; 
                 // on ajoute +1 sur le compte de défaites et jeux joués 
                 user.setLosings(losePlusUn);
                 int gamePlayedPlusUn = user.getGamePlayed() + 1; 
                 user.setGamePlayed(gamePlayedPlusUn);
+
+                // on calculte le ratio
+                user.calculateRatio(); 
                 // on ajoute le score à la base de données
                 data.addScoreToDB(user.getUsername(), user.getWinnings(), user.getLosings(), user.getRatio());
 
+                // on déclare vrai la valeur win pour sortir du jeu
                 win = true; 
             }
 
@@ -114,9 +138,9 @@ public class Game {
                 System.out.println("It's a draw");
                 break;
             }
-            grid.printGrid();
+            
 
-            // compte les tours 
+            // aujoute un au compteur de tours 
             turn ++; 
         }  
         sc.close();
@@ -170,7 +194,7 @@ public class Game {
                     int jPosition1 = j + 1;
                     int jPosition2 = j + 2;
                     int jPosition3 = j + 3;
-                    
+                    // si on a les trois jetons alignés après le premier, le joueur a gagné
                     if (g.getGridAtPos(jPosition1, iPosition1).getContenant().equals(t.getColor())
                         && g.getGridAtPos(jPosition2, iPosition2).getContenant().equals(t.getColor())
                         && g.getGridAtPos(jPosition3, iPosition3).getContenant().equals(t.getColor())) {
