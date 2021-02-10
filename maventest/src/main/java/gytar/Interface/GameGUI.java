@@ -11,7 +11,7 @@ public class GameGUI extends JFrame {
         initUI(); 
     }
 
-    private void initUI(){
+    private void initUI() {
         add(new Board());
 
         setTitle("falling down");
