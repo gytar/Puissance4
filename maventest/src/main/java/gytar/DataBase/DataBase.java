@@ -6,8 +6,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mindrot.BCrypt;
-
 
 
 public class DataBase {
@@ -32,24 +30,14 @@ public class DataBase {
 
             System.out.println("Creating Statement...");
             String sql;
-            user.setHashedPassword(BCrypt.hashpw(password, BCrypt.gensalt(10)));
             sql = "INSERT INTO puis4 (username, password) VALUES (?, ?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
-            stmt.setString(2, user.getHashedPassword());
-            
+            stmt.setString(2, password);
+
             stmt.execute();
 
-            System.out.println(user.getHashedPassword());
-
-            if (BCrypt.checkpw(password, user.getHashedPassword())){
-                System.out.println("It matches");
-                System.out.println("elements added");
-            }
-            else{
-	            System.out.println("It does not match");
-            }
-            
+            System.out.println("elements added");
 
 
         } catch(SQLException e){
@@ -59,7 +47,11 @@ public class DataBase {
         }
     }
 
+<<<<<<< HEAD
     public void addScoreToDB(String username, int win, int lost, double ratio){
+=======
+    public void addScoreToDB(String username, int win, int lost, float ratio){
+>>>>>>> 33da3ea (hash passwords pom.xml dependencies database)
         Connection conn = null;
         try{
             Class.forName(JDBC_DRIVER);
@@ -81,8 +73,8 @@ public class DataBase {
             String sql;
             sql = "UPDATE puis4 SET win = ?, ratio = ?, lose = ? WHERE username = ? ";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, win); 
-            stmt.setDouble(2, ratio);
+            stmt.setInt(1, win);
+            stmt.setFloat(2, ratio);
             stmt.setInt(3, lost);
             stmt.setString(4, username);
 
@@ -107,6 +99,7 @@ public class DataBase {
         try{
             Class.forName(JDBC_DRIVER);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             
             System.out.println("Connecting to data base...");
@@ -114,6 +107,10 @@ public class DataBase {
 >>>>>>> 1e4df34 (cryptage)
             
             System.out.println("Connecting to data base...");
+=======
+
+            System.out.println("Connecting to data base...");
+>>>>>>> 33da3ea (hash passwords pom.xml dependencies database)
             conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
 
             String sql;
@@ -122,10 +119,14 @@ public class DataBase {
             sql = "SELECT username, password FROM puis4;";
             // do query
 <<<<<<< HEAD
+<<<<<<< HEAD
             Statement stmt = conn.createStatement();
 =======
             Statement stmt = conn.createStatement(); 
 >>>>>>> 1e4df34 (cryptage)
+=======
+            Statement stmt = conn.createStatement();
+>>>>>>> 33da3ea (hash passwords pom.xml dependencies database)
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
@@ -134,13 +135,14 @@ public class DataBase {
             }
 
             for(int i = 0; i < usernames.size(); i++){
-                if((usernames.get(i).equals(username)) && (BCrypt.checkpw(password, passwords.get(i)))){
+                if((usernames.get(i).equals(username)) && passwords.get(i).equals(password)){
                     System.out.println("found combo " + username + ", " + password);
                     connected = true;
                     break;
                 }
             }
-            
+
+
             rs.close();
             stmt.close();
             conn.close();
@@ -156,6 +158,7 @@ public class DataBase {
 
     public User getUserData(String username){
 <<<<<<< HEAD
+<<<<<<< HEAD
         User user = new User();
         Connection conn = null;
 
@@ -163,6 +166,11 @@ public class DataBase {
         User user = new User(); 
         Connection conn = null;  
 >>>>>>> 1e4df34 (cryptage)
+=======
+        User user = new User();
+        Connection conn = null;
+
+>>>>>>> 33da3ea (hash passwords pom.xml dependencies database)
         try{
             Class.forName(JDBC_DRIVER);
 
@@ -181,7 +189,6 @@ public class DataBase {
                 user.setRatio(rs.getFloat("ratio"));
                 user.setGamePlayed(user.getWinnings() + user.getLosings());
             }
-
             rs.close();
             stmt.close();
             conn.close();
@@ -191,11 +198,16 @@ public class DataBase {
             e.printStackTrace();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         return user;
 =======
         
         return user; 
 >>>>>>> 1e4df34 (cryptage)
+=======
+
+        return user;
+>>>>>>> 33da3ea (hash passwords pom.xml dependencies database)
     }
 }

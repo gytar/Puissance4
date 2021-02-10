@@ -29,7 +29,11 @@ public class Column {
     }
 
     public void printColumn(){
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 33da3ea (hash passwords pom.xml dependencies database)
     }
     // créer fonction est pleine
     // créer fonction impression

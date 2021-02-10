@@ -2,9 +2,13 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
 =======
     <mapping directory="" vcs="Git" />
 >>>>>>> 89110e895f042e3bfc77a8811fb7afbee5ae861e
+=======
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+>>>>>>> 33da3ea (hash passwords pom.xml dependencies database)
   </component>
 </project>

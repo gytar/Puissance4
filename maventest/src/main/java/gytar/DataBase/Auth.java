@@ -67,6 +67,7 @@ public class Auth {
 
     public User createAnAccount(){
         User newUser = new User(); 
+        //String hashed = "";
         System.out.println("Please register some infos");
         newUser.setUsername(console.readLine("Username: ").trim());
         newUser.setPassword(new String(console.readPassword("Password: ")));
