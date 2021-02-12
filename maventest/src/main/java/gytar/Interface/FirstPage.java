@@ -29,7 +29,9 @@ public class FirstPage extends JFrame implements ActionListener {
         setTitle("Hello!");
         setSize(1000, 700);
         setBackground(new Color(0, 0, 128));
+        setLocationRelativeTo(null);
         setFocusable(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
  
         
@@ -37,6 +39,7 @@ public class FirstPage extends JFrame implements ActionListener {
         JLabel title = new JLabel("Welcome to the Connect 4!", JLabel.CENTER);
         title.setFont(new Font("Helvetica", Font.PLAIN, 32)); 
         paneltitle.add(title); 
+        paneltitle.setBackground(new Color(0,0,200));
         paneltitle.setLocation(500, 0);
         
 
@@ -44,7 +47,7 @@ public class FirstPage extends JFrame implements ActionListener {
         JPanel panel1 = new JPanel();
         JButton createAccount = new JButton("Create Account");
         createAccount.setFont(new Font("Helvetica", Font.PLAIN, 14));
-        createAccount.setPreferredSize(new Dimension(300, 40));
+        createAccount.setPreferredSize(new Dimension(400, 40));
         createAccount.setBackground(new Color(200,200,0));
         
         createAccount.addActionListener(new ActionListener() {
@@ -54,13 +57,16 @@ public class FirstPage extends JFrame implements ActionListener {
             }
         });
         panel1.add(createAccount); 
+        panel1.setBackground(new Color(0,0,200));
+
         
 
         JPanel panel2 = new JPanel(); 
         JButton login = new JButton("Log In");
         login.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        
         login.setBackground(new Color(180,0,0));
-        login.setPreferredSize(new Dimension(300, 40));
+        login.setPreferredSize(new Dimension(400, 40));
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Authentification auth = new Authentification(); 
@@ -68,6 +74,8 @@ public class FirstPage extends JFrame implements ActionListener {
             }
         });
         panel2.add(login); 
+        panel2.setBackground(new Color(0,0,200));
+
         
 
         int top = 100; 
@@ -77,14 +85,15 @@ public class FirstPage extends JFrame implements ActionListener {
         
         JPanel containerPanel = new JPanel(new GridLayout(4,1));
         containerPanel.setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
+        containerPanel.setBackground(new Color(0, 0, 128));
         containerPanel.add(paneltitle);
         containerPanel.add(panel1);
         containerPanel.add(panel2);
+        
 
         add(containerPanel, BorderLayout.NORTH); 
        
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setVisible(true);
         

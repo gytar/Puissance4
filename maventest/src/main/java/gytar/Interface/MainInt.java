@@ -12,11 +12,6 @@ public class MainInt extends JFrame {
     private void initMain() {
         add(new FirstPage());
         
-        setTitle("Hello!");
-        setSize(1000, 700); 
-        setBackground(new Color(0,0,128));
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);        
     }
 
     public static void main(String[] args) {
