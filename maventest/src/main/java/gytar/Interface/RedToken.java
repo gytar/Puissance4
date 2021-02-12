@@ -69,7 +69,7 @@ public class RedToken {
         }
 
         if(key == KeyEvent.VK_ENTER) { 
-            if(y < GameGUI.getWindows().length) {
+            if(y < 600) {
                 dy = 1; 
             } else {
                 dy = 0; 
