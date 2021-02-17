@@ -3,6 +3,7 @@ package gytar.DataBase;
 import java.io.Console;
 import java.util.Scanner;
 import gytar.Elements.User;
+import gytar.Interface.Authentification;
 
 public class Auth {
     DataBase data = new DataBase(); 
@@ -31,39 +32,22 @@ public class Auth {
 
     public User LogIn(){
         User user = new User(); 
-        for(int i = 0; i < 15; i++){
-            System.out.println("Please enter infos");
-            user.setUsername(console.readLine("Username: ").trim());
-            user.setPassword(new String(console.readPassword("Password: ")));
+        Authentification authe = new Authentification();
 
-    
-            String password = user.getPassword(); 
-            String username = user.getUsername();
-            //String hashedPassword = user.getHashedPassword();
+        String password = authe.getPassword();
+        String username = authe.getUsername();  
+        boolean isConnected = data.getUserIdConnection(username, password);
 
-            //(BCrypt.checkpw(hashed)
-            if(data.getUserIdConnection(username, password) == true){
-                System.out.println("you are connected!");
-                user = data.getUserData(username);
-                System.out.println("Welcome back " + username);
-                 
-                break; 
-            } else if(i > 2) {
-                System.out.print("are you sure you don't want to create an account? (y/n) ");
-                String choice = sc.nextLine().toLowerCase().trim();
-                if(choice.contains("y")) {
-                    createAnAccount();
-                    break; 
-                } else 
-                    continue;
-                
-            } else {
-                System.out.println("the username or the password might be incorrect");
-            }
+        if(isConnected){
+            System.out.println("you are connected!");
+            user = data.getUserData(username);
+        } else {
+            System.out.println("wrong password / username");
         }
-        
-        return user; 
+        return user;
     }
+        
+         
 
     public User createAnAccount(){
         User newUser = new User(); 

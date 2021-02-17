@@ -145,9 +145,7 @@ public class CreateAnAccount extends JFrame implements ActionListener {
 
         
 
-        GameGUI b = new GameGUI();
+        Authentification b = new Authentification();
         b.setVisible(true); 
 	}
-
-
 }

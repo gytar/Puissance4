@@ -11,12 +11,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
-import java.util.concurrent.TimeUnit;
 import java.awt.GridBagLayout; 
 import java.awt.GridBagConstraints;
 
-import gytar.DataBase.DataBase;
-import gytar.Elements.User;
+import gytar.DataBase.*;
 
 
 
@@ -25,8 +23,6 @@ public class Authentification extends JFrame implements ActionListener {
     private static final long serialVersionUID = -681219389204111002L;
 
     // création de la base de données + un nouvel utilisateur
-    DataBase data = new DataBase(); 
-    User user = new User(); 
     // éléments utlilisés dans la classe: 
     JLabel userLabel; 
     JLabel passwordLabel; 
@@ -36,6 +32,10 @@ public class Authentification extends JFrame implements ActionListener {
     JPasswordField passwordField; 
 
     JButton login; 
+
+    MainInt main; 
+    DataBase data = new DataBase();
+
     // constructeur de la page authentification
     public Authentification() {
          super("Authentification");
@@ -124,8 +124,7 @@ public class Authentification extends JFrame implements ActionListener {
         contentPane.add(passwordField, gbc);
         
         gbc.gridx = 1; 
-        gbc.gridy = 2;
-        
+        gbc.gridy = 2;  
         contentPane.add(login, gbc);
 
         gbc.gridx = 0; 
@@ -146,22 +145,27 @@ public class Authentification extends JFrame implements ActionListener {
         // on prend les éléments notés par l'ulitisateur: 
         String username = usernameText.getText(); 
         String password = String.valueOf(passwordField.getPassword());
-        // on lui attribut
-        user.setPassword(password);
-        user.setUsername(username);
-        // on veut savoir si ses éléments correspondent avec ce qu'on a dans la base de données
         boolean isConnected = data.getUserIdConnection(username, password); 
 
+        // on lui attribut
+        main.myUser().setPassword(password);
+        main.myUser().setUsername(username);
+
         if(isConnected ==  true) {
-            message.setText("You are connected! \nWelcome " + user.getUsername() + "!");
-            user = data.getUserData(username);
+            message.setText("You are connected! Welcome " + main.myUser().getUsername() + "!");
         } else {
             message.setText("Invalid username or password...");
         }
 
-        GameGUI b = new GameGUI();
-        b.setVisible(true); 
+        //user = auth.LogIn(); 
+        new GameGUI(); 
 	}
 
+    public String getUsername() {
+        return usernameText.getText();
+    }
 
+    public String getPassword() {
+        return String.valueOf(passwordField.getPassword());
+    }
 }
