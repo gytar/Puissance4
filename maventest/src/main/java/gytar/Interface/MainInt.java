@@ -10,7 +10,7 @@ public class MainInt extends JFrame {
         setVisible(true);
     }
     private void initMain() {
-        add(new FirstPage());
+        add(new Board());
         
     }
 
