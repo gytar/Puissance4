@@ -7,15 +7,13 @@ import gytar.Elements.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.concurrent.TimeUnit;
 
-public class CreateAnAccount extends JFrame implements ActionListener {
+public class CreateAnAccount extends JFrame {
 
     private static final long serialVersionUID = -681219389204111002L;
 
     // création de la base de données + un nouvel utilisateur
     DataBase data = new DataBase();
-    User user = new User();
     // éléments utlilisés dans la classe:
     JLabel userLabel;
     JLabel passwordLabel;
@@ -27,13 +25,13 @@ public class CreateAnAccount extends JFrame implements ActionListener {
     JButton login;
 
     // constructeur de la page authentification
-    public CreateAnAccount() {
+    public CreateAnAccount(User user) {
         super("Create an account");
         this.setSize(1000, 700);
-        init();
+        init(user);
     }
 
-    private void init() {
+    private void init(User user) {
         // pour avoir le background de la bonne couleur, le getContentPane() ->
         // obligatoire
         getContentPane().setBackground(new Color(171, 228, 255));
@@ -71,8 +69,25 @@ public class CreateAnAccount extends JFrame implements ActionListener {
 
         // bouton créer un compte
         login = new JButton("Create an account");
-        // ici l'actionListener est dans une fonction à part, voir (*)
-        login.addActionListener(this);
+
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // on prend les éléments notés par l'ulitisateur:
+                String username = usernameText.getText();
+                String password = String.valueOf(passwordField.getPassword());
+                // on lui attribut
+                user.setPassword(password);
+                user.setUsername(username);
+
+                data.addUserDB(username, password);
+
+                message.setText("Account created !");
+
+                Authentification b = new Authentification(user);
+                b.setVisible(true); 
+            }
+        });
 
         message = new JLabel();
 
@@ -80,7 +95,7 @@ public class CreateAnAccount extends JFrame implements ActionListener {
         // quand on clique sur ce boutton, on veut retourner à la page précédente
         goBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                FirstPage f = new FirstPage();
+                FirstPage f = new FirstPage(user);
                 f.setVisible(true);
             }
         });
@@ -130,22 +145,5 @@ public class CreateAnAccount extends JFrame implements ActionListener {
     }
 
     // (*)
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
-        // on prend les éléments notés par l'ulitisateur:
-        String username = usernameText.getText();
-        String password = String.valueOf(passwordField.getPassword());
-        // on lui attribut
-        user.setPassword(password);
-        user.setUsername(username);
-
-        data.addUserDB(username, password);
-
-        message.setText("Account created !");
-
-        
-
-        Authentification b = new Authentification();
-        b.setVisible(true); 
-	}
+    
 }

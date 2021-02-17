@@ -1,7 +1,6 @@
 package gytar.Interface;
 
 
-import gytar.Main;
 import gytar.DataBase.DataBase;
 import gytar.Elements.*;
 
@@ -12,16 +11,12 @@ import java.awt.*;
 
 public class Board extends JFrame implements ActionListener {
 
-    // Token yellow = new Token(); 
-    MainInt main; 
     DataBase data; 
-    User user = null;
-    // IA ia = new IA();
-    // Game game = new Game(); 
+
     private static final long serialVersionUID = 4746733928727453745L;
 
-    public Board() {
-        String username = main.myUser().getUsername();
+    public Board(User user) {
+        String username = user.getUsername();
         String message = username + "'s turn! Enter choice (1-7): ";
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -52,9 +47,12 @@ public class Board extends JFrame implements ActionListener {
          
         add(contentPane); 
 
+        setTitle("falling down");
+        setSize(1000, 700); 
         setLocationRelativeTo(null);
-        setFocusable(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
     }
 
 

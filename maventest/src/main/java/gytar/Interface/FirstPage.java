@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import gytar.Elements.User;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,11 +19,11 @@ import java.awt.event.*;
 public class FirstPage extends JFrame implements ActionListener {
 
 
-    public FirstPage() {
-        init(); 
+    public FirstPage(User user) {
+        init(user); 
     }
 
-    private void init() {
+    private void init(User user) {
 
         
         setTitle("Hello!");
@@ -50,7 +52,7 @@ public class FirstPage extends JFrame implements ActionListener {
         
         createAccount.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CreateAnAccount create = new CreateAnAccount(); 
+                CreateAnAccount create = new CreateAnAccount(user); 
                 create.setVisible(true); 
             }
         });
@@ -67,7 +69,7 @@ public class FirstPage extends JFrame implements ActionListener {
         login.setPreferredSize(new Dimension(400, 40));
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Authentification auth = new Authentification(); 
+                Authentification auth = new Authentification(user); 
                 auth.setVisible(true); 
             }
         });

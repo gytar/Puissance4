@@ -11,10 +11,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
-import java.awt.GridBagLayout; 
+import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
 import gytar.DataBase.*;
+import gytar.Elements.User;
 
 
 
@@ -37,13 +38,31 @@ public class Authentification extends JFrame implements ActionListener {
     DataBase data = new DataBase();
 
     // constructeur de la page authentification
-    public Authentification() {
+    public Authentification(User user) {
          super("Authentification");
          this.setSize(1000, 700);
-         init(); 
+         init(user); 
     }   
 
-    private void init() {
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+       
+
+        String username = usernameText.getText(); 
+        String password = String.valueOf(passwordField.getPassword());
+        boolean isConnected = data.getUserIdConnection(username, password);
+
+        if(isConnected ==  true) {
+            MainInt.user = data.getUserData(username);
+            message.setText("You are connected! Welcome " + MainInt.user.getUsername() + "!");
+        } else {
+            message.setText("Invalid username or password...");
+        }
+
+        new Board(MainInt.user); 
+    }
+
+    private void init(User user) {
         // pour avoir le background de la bonne couleur, le getContentPane() -> obligatoire
         getContentPane().setBackground(new Color(171, 228, 255));
         setPreferredSize(new Dimension(1000, 700));
@@ -80,19 +99,16 @@ public class Authentification extends JFrame implements ActionListener {
 
         // bouton login
         login = new JButton("Log in!"); 
-        // ici l'actionListener est dans une fonction à part, voir (*)
+        // ici l'actionListener est dans init car besoin de User.
         login.addActionListener(this);
 
-
-
         message = new JLabel(); 
-
 
         JButton goBack = new JButton("↩");
         // quand on clique sur ce boutton, on veut retourner à la page précédente
         goBack.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                FirstPage f = new FirstPage(); 
+                FirstPage f = new FirstPage(user); 
                 f.setVisible(true);
             }
         });
@@ -137,35 +153,5 @@ public class Authentification extends JFrame implements ActionListener {
         contentPane.add(goBack, gbc);
         pack();
         setVisible(true);  
-    }
-
-    // (*)
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-        // on prend les éléments notés par l'ulitisateur: 
-        String username = usernameText.getText(); 
-        String password = String.valueOf(passwordField.getPassword());
-        boolean isConnected = data.getUserIdConnection(username, password); 
-
-        // on lui attribut
-        main.myUser().setPassword(password);
-        main.myUser().setUsername(username);
-
-        if(isConnected ==  true) {
-            message.setText("You are connected! Welcome " + main.myUser().getUsername() + "!");
-        } else {
-            message.setText("Invalid username or password...");
-        }
-
-        //user = auth.LogIn(); 
-        new GameGUI(); 
-	}
-
-    public String getUsername() {
-        return usernameText.getText();
-    }
-
-    public String getPassword() {
-        return String.valueOf(passwordField.getPassword());
     }
 }
