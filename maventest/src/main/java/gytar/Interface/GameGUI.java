@@ -1,7 +1,6 @@
 package gytar.Interface;
 
 import javax.swing.JFrame;
-import java.awt.EventQueue;
 
 
 public class GameGUI extends JFrame {
@@ -20,13 +19,5 @@ public class GameGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         
-    }
-
-    public static void main(String[] args) {
-        // permet de voir l'animation
-        EventQueue.invokeLater(() -> {
-            JFrame ex = new GameGUI(); 
-            ex.setVisible(true);
-        });
     }
 }

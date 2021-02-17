@@ -7,11 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
+import java.util.concurrent.TimeUnit;
 import java.awt.GridBagLayout; 
 import java.awt.GridBagConstraints;
 
@@ -45,7 +45,7 @@ public class Authentification extends JFrame implements ActionListener {
 
     private void init() {
         // pour avoir le background de la bonne couleur, le getContentPane() -> obligatoire
-        getContentPane().setBackground(new Color(0, 0, 128));
+        getContentPane().setBackground(new Color(171, 228, 255));
         setPreferredSize(new Dimension(1000, 700));
         //pour mettre la fenêtre au centre 
         setLocationRelativeTo(null);
@@ -57,7 +57,7 @@ public class Authentification extends JFrame implements ActionListener {
         userLabel = new JLabel(); 
         userLabel.setText("Username: ");
         // police d'écriture
-        userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        userLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
         // bonnes dimension: sinon trop petit
         userLabel.setPreferredSize(new Dimension(100, 40));
 
@@ -69,7 +69,7 @@ public class Authentification extends JFrame implements ActionListener {
 
         passwordLabel = new JLabel();
         passwordLabel.setText("Password");
-        passwordLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        passwordLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
         passwordLabel.setPreferredSize(new Dimension(100, 30));
 
         // création de la zone de mot de passe.
@@ -159,6 +159,8 @@ public class Authentification extends JFrame implements ActionListener {
             message.setText("Invalid username or password...");
         }
 
+        GameGUI b = new GameGUI();
+        b.setVisible(true); 
 	}
 
 

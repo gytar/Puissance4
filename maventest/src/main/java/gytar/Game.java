@@ -181,7 +181,7 @@ public class Game {
 
         //condition de victoire dans le sens horizontal
         for(int i = 0; i < 6; i++) {
-
+            if(victory) break;
             // au changement de ligne on rétablit le compte à 0 
             champion = 0; 
 
@@ -200,7 +200,7 @@ public class Game {
         }
         // condition de vicoire dans le sens vertical
         for(int i = 0; i < 7; i++) {
-
+            if(victory) break; 
             // au changement de colonne, on rétablit le compte à 0
             champion = 0;
 
