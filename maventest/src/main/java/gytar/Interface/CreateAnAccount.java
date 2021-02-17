@@ -13,7 +13,7 @@ public class CreateAnAccount extends JFrame{
         
         setTitle("Create an account");
         setSize(1000, 700);
-        setBackground(new Color(0, 0, 128));
+        getContentPane().setBackground(new Color(0, 0, 128));
         setLocationRelativeTo(null);
         setFocusable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

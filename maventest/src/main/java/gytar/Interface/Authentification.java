@@ -1,20 +1,19 @@
 package gytar.Interface;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
-import java.awt.GridLayout; 
+import java.awt.GridBagLayout; 
+import java.awt.GridBagConstraints;
 
 import gytar.DataBase.DataBase;
 import gytar.Elements.User;
@@ -22,74 +21,129 @@ import gytar.Elements.User;
 
 
 public class Authentification extends JFrame implements ActionListener {
+ 
+    private static final long serialVersionUID = -681219389204111002L;
+
+    // création de la base de données + un nouvel utilisateur
     DataBase data = new DataBase(); 
     User user = new User(); 
-
+    // éléments utlilisés dans la classe: 
     JLabel userLabel; 
     JLabel passwordLabel; 
     JLabel message; 
-
+    // saisie de l'utilisateur: son nom et son mot de passe
     JTextField usernameText; 
     JPasswordField passwordField; 
 
     JButton login; 
 
     public Authentification() {
-        init(); 
+         super("Authentification");
+         this.setSize(1000, 700);
+         init(); 
     }   
 
     private void init() {
-        setTitle("Authentification");
-        setSize(1000, 700);
-        setBackground(new Color(0, 0, 128));
+       
+        
+        /**
+         * setLayout(new GridBagLayout());
+         * JPanel panel = new JPanel();
+         * panel.add(new JLabel("This is a label"));
+         * panel.setBorder(new LineBorder(Color.BLACK)); // make it easy to see
+         * add(panel, new GridBagConstraints());
+         * setSize(400, 400);
+         * setLocationRelativeTo(null);
+         * setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         * setVisible(true);
+         */
+        getContentPane().setBackground(new Color(0, 0, 128));
+        setPreferredSize(new Dimension(1000, 700));
+        //pour mettre la fenêtre au centre 
         setLocationRelativeTo(null);
         setFocusable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+       
 
         userLabel = new JLabel(); 
         userLabel.setText("Username: ");
+        userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14)); // la police ne fonctionne pas quand on ajoute en général 
+        userLabel.setPreferredSize(new Dimension(100, 40));
+
+
         usernameText = new JTextField(); 
-
-        userLabel.setPreferredSize(new Dimension(300, 40));
-        userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
-
-        usernameText.setPreferredSize(new Dimension(300, 40));
         usernameText.setBackground(new Color(180, 180, 180));
+        usernameText.setPreferredSize(new Dimension(150, 30));
+
+       
 
         passwordLabel = new JLabel();
         passwordLabel.setText("Password");
-        passwordField = new JPasswordField(); 
-
-        passwordLabel.setPreferredSize(new Dimension(300, 10));
         passwordLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        passwordLabel.setPreferredSize(new Dimension(100, 30));
 
-        passwordField.setPreferredSize(new Dimension(300, 10));
+
+
+        passwordField = new JPasswordField();  
         passwordField.setBackground(new Color(180, 180, 180));
-
+        passwordField.setPreferredSize(new Dimension(150, 30));
 
         login = new JButton("Log in!"); 
         login.addActionListener(this);
 
-        login.setPreferredSize(new Dimension(30, 50));
+
 
         message = new JLabel(); 
 
 
-        JPanel panel = new JPanel(new GridLayout(3,1));
-        panel.setBorder(BorderFactory.createEmptyBorder(100, 100, 1000, 100));
-        panel.add(userLabel);
-        panel.add(usernameText);
-        panel.add(passwordLabel);
-        panel.add(passwordField);
-        panel.add(message);
-        panel.add(login); 
-        panel.setBackground(new Color(200,180,255));
-        panel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        JButton goBack = new JButton("↩");
+        // quand on clique sur ce boutton, on veut retourner à la page précédente
+        goBack.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                FirstPage f = new FirstPage(); 
+                f.setVisible(true);
+            }
+        });
 
-        add(panel, BorderLayout.NORTH); 
-        setVisible(true);
+
+        JPanel contentPane = (JPanel) this.getContentPane(); 
+
+        contentPane.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        contentPane.setBackground(new Color(200,180,255));
+        contentPane.setFont(new Font("Helvetica", Font.PLAIN, 14));
+
+        gbc.gridx = 0; 
+        gbc.gridy = 0; 
+        contentPane.add(userLabel, gbc);
+
+        gbc.gridx = 1; 
+        gbc.gridy = 0; 
+        contentPane.add(usernameText, gbc);
         
+        gbc.gridx = 0; 
+        gbc.gridy = 1;
+        contentPane.add(passwordLabel, gbc);
 
+        gbc.gridx = 1; 
+        gbc.gridy = 1;
+        contentPane.add(passwordField, gbc);
+        
+        gbc.gridx = 1; 
+        gbc.gridy = 2;
+        
+        contentPane.add(login, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 3;
+        contentPane.add(message, gbc); 
+
+        
+        gbc.gridx = 2; 
+        gbc.gridy = 3; 
+        contentPane.add(goBack, gbc);
+        pack();
+        setVisible(true);  
     }
 
 	@Override

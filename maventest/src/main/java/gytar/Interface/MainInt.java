@@ -1,7 +1,6 @@
 package gytar.Interface;
 
 import java.awt.EventQueue;
-import java.awt.Color;
 
 import javax.swing.JFrame;
 
