@@ -7,6 +7,7 @@ TO DO Puissance 4:
 
 - Commencer le GUI:
     - apprendre un peu plus sur swing etc. 
+<<<<<<< HEAD
     - libGDK? 
     - Scrum pour voir
 
@@ -17,3 +18,17 @@ TO DO Puissance 4:
 - Game: 
     - bug: si la colonne est pleine, faire rejouer le joueur (sinon son tour 
 par à l'eau) 
+=======
+    - grille: placer la grille dans l'interface, puis metttre l'image de la grille. 
+    - jeton: faire avec une couleur au départ
+    - choix de l'utilisateur: dans un user input (la barre là) 
+    - si possible, réussir à jouer
+    - quand le joueur choisit une colonne, le jeton pop up 
+    
+    
+    
+    
+    - interface authentification (voir comment ça a avancé) 
+    	- b.addActionListener(ActionEvent e) 
+    	- public void actionPerformed(ActionEvent e){Object source = e.getSource(); if(source==b){ //code } } 
+>>>>>>> 89110e895f042e3bfc77a8811fb7afbee5ae861e

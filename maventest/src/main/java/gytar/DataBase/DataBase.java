@@ -6,6 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mindrot.BCrypt;
+
 
 
 public class DataBase {
@@ -30,14 +32,24 @@ public class DataBase {
 
             System.out.println("Creating Statement...");
             String sql;
+            user.setHashedPassword(BCrypt.hashpw(password, BCrypt.gensalt(10)));
             sql = "INSERT INTO puis4 (username, password) VALUES (?, ?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
-            stmt.setString(2, password);
-
+            stmt.setString(2, user.getHashedPassword());
+            
             stmt.execute();
 
-            System.out.println("elements added");
+            System.out.println(user.getHashedPassword());
+
+            if (BCrypt.checkpw(password, user.getHashedPassword())){
+                System.out.println("It matches");
+                System.out.println("elements added");
+            }
+            else{
+	            System.out.println("It does not match");
+            }
+            
 
 
         } catch(SQLException e){
@@ -47,7 +59,7 @@ public class DataBase {
         }
     }
 
-    public void addScoreToDB(String username, int win, int lost, float ratio){
+    public void addScoreToDB(String username, int win, int lost, double ratio){
         Connection conn = null;
         try{
             Class.forName(JDBC_DRIVER);
@@ -69,8 +81,8 @@ public class DataBase {
             String sql;
             sql = "UPDATE puis4 SET win = ?, ratio = ?, lose = ? WHERE username = ? ";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, win);
-            stmt.setFloat(2, ratio);
+            stmt.setInt(1, win); 
+            stmt.setDouble(2, ratio);
             stmt.setInt(3, lost);
             stmt.setString(4, username);
 
@@ -94,7 +106,7 @@ public class DataBase {
         Connection conn = null;
         try{
             Class.forName(JDBC_DRIVER);
-
+            
             System.out.println("Connecting to data base...");
             conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
 
@@ -112,14 +124,13 @@ public class DataBase {
             }
 
             for(int i = 0; i < usernames.size(); i++){
-                if((usernames.get(i).equals(username)) && passwords.get(i).equals(password)){
+                if((usernames.get(i).equals(username)) && (BCrypt.checkpw(password, passwords.get(i)))){
                     System.out.println("found combo " + username + ", " + password);
                     connected = true;
                     break;
                 }
             }
-
-
+            
             rs.close();
             stmt.close();
             conn.close();
@@ -155,6 +166,7 @@ public class DataBase {
                 user.setRatio(rs.getFloat("ratio"));
                 user.setGamePlayed(user.getWinnings() + user.getLosings());
             }
+
             rs.close();
             stmt.close();
             conn.close();

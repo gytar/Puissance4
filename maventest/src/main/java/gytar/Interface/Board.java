@@ -16,7 +16,7 @@ public class Board extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
     
     private Timer timer; 
-    private int DELAY = 10; 
+    private int DELAY = 2; 
     private RedToken bille = new RedToken(); 
 
     public Board() {
@@ -28,7 +28,7 @@ public class Board extends JPanel implements ActionListener {
     private void initBoard() {
 
         addKeyListener(new TAdapter()); 
-        setBackground(new Color(255, 220, 180));
+        setBackground(new Color(0, 0, 128));
         setFocusable(true);
 
         timer = new Timer(DELAY, this);

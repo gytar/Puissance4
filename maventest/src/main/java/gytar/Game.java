@@ -7,7 +7,34 @@ import gytar.IA.*;
 import gytar.DataBase.*;
 
 public class Game {
-    DataBase data = new DataBase();
+
+    public Game(){
+        init();
+    }
+
+    private void init() {
+        DataBase data = new DataBase();
+
+        Grid grid = new Grid();
+        Token red = new Token();
+        Token yellow = new Token(); 
+
+        User user = new User();
+        Auth auth = new Auth();
+        IA iaTeube = new IA(); 
+
+        grid.initGrid();
+        red.initRedToken();
+        yellow.initYellowToken();
+        user = auth.Connection(); 
+
+        user.setToken(red); 
+        iaTeube.setToken(yellow);
+
+        theGame(grid, red, yellow, user, iaTeube, data);
+    }
+    //créer un constructeur ici qui initialise le jeu. 
+   
     
     // compte les cases vides dans la colonne que l'utilisateur choisit
     public int columnCount(int userChoice, Grid grid){
@@ -19,7 +46,7 @@ public class Game {
         }
         return columnCount; 
     }
-    public void theGame(Grid grid, Token red, Token yellow, User user, IA ia){
+    public void theGame(Grid grid, Token red, Token yellow, User user, IA ia, DataBase data){
         Scanner sc  = new Scanner(System.in);  
 
         String color;
@@ -153,37 +180,49 @@ public class Game {
         int champion = 0; 
 
         //condition de victoire dans le sens horizontal
-        for(int i = 0; i < 6; i++){
-            for(int j = 0; j < 7; j++){
-                if(g.getGridAtPos(i, j).getContenant().equals(t.getColor())){
-                    champion += 1; 
-                } else {
-                    champion = 0; 
-                }
+        for(int i = 0; i < 6; i++) {
+            if (victory) break;
+
+            // au changement de ligne on rétablit le compte à 0 
+            champion = 0; 
+
+            for(int j = 0; j < 7; j++) {
                 if(champion == 4){
                     victory = true;
                     break;
                 }
+                if(g.getGridAtPos(i, j).getContenant().equals(t.getColor())) {
+                    champion += 1; 
+                } else {
+                    champion = 0; 
+                }
+                
             }
         }
         // condition de vicoire dans le sens vertical
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < 6; j++){
-                if(g.getGridAtPos(j, i).getContenant().equals(t.getColor())){
-                    champion += 1; 
-                   
-                } else {
-                    champion = 0; 
-                }
+        for(int i = 0; i < 7; i++) {
+            if (victory) break;
+
+            // au changement de colonne, on rétablit le compte à 0
+            champion = 0;
+
+            for(int j = 0; j < 6; j++) {
                 if(champion == 4){
                     victory = true;
                     break;
                 }
+
+                if(g.getGridAtPos(j, i).getContenant().equals(t.getColor())) {
+                    champion += 1;                  
+                } else {
+                    champion = 0; 
+                }
+                
             }
         }
         // condition victoire pour la diagonale dans ce sens -> "/"
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 3; j++){
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 3; j++) {
                 
                 if(g.getGridAtPos(j, i).getContenant().equals(t.getColor())) {
                     

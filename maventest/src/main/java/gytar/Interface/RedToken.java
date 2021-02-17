@@ -6,8 +6,8 @@ import java.awt.event.*;
 public class RedToken {
     private int dx, dy; 
     private int x = 450; 
-    private int y = 100; 
-    private int w = 100, h = 85; 
+    private int y = 0; 
+    private int w = 130, h = 130; 
     private Image image; 
 
     public RedToken() {
@@ -15,7 +15,7 @@ public class RedToken {
     }
 
     private void loadImage() {
-        ImageIcon ii = new ImageIcon("/home/gytar/Documents/Dev/Cyberfull/java-algo/src/cyberfull_java/java_animation/resources/realredball.png"); 
+        ImageIcon ii = new ImageIcon("/home/gytar/Documents/Dev/p4-cf/Puissance4/maventest/src/main/java/gytar/Interface/ressources/redToken.png"); 
         image = ii.getImage(); 
   
         
@@ -52,15 +52,30 @@ public class RedToken {
         int key = e.getKeyCode();
 
         if(key == KeyEvent.VK_RIGHT) {
-            dx = 10; 
+            if(x < 890) {
+                dx = 1;
+            } else {
+                dx = 0;     
+            }         
         }
 
         if(key == KeyEvent.VK_LEFT) {
-            dx = -10; 
+            if(x > 5) {
+                dx = -1; 
+            } else {
+                dx = 0; 
+            }
+            
         }
 
         if(key == KeyEvent.VK_ENTER) { 
-            dy = 5;   
+            if(y < 600) {
+                dy = 1; 
+            } else {
+                dy = 0; 
+            }
+            
+             
         }
     }
 
@@ -73,5 +88,6 @@ public class RedToken {
         if(key == KeyEvent.VK_LEFT) {
             dx = 0;
         }
+        
     }
 }
