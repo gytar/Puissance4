@@ -36,7 +36,7 @@ public class Authentification extends JFrame implements ActionListener {
     JPasswordField passwordField; 
 
     JButton login; 
-
+    // constructeur de la page authentification
     public Authentification() {
          super("Authentification");
          this.setSize(1000, 700);
@@ -44,51 +44,43 @@ public class Authentification extends JFrame implements ActionListener {
     }   
 
     private void init() {
-       
-        
-        /**
-         * setLayout(new GridBagLayout());
-         * JPanel panel = new JPanel();
-         * panel.add(new JLabel("This is a label"));
-         * panel.setBorder(new LineBorder(Color.BLACK)); // make it easy to see
-         * add(panel, new GridBagConstraints());
-         * setSize(400, 400);
-         * setLocationRelativeTo(null);
-         * setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         * setVisible(true);
-         */
+        // pour avoir le background de la bonne couleur, le getContentPane() -> obligatoire
         getContentPane().setBackground(new Color(0, 0, 128));
         setPreferredSize(new Dimension(1000, 700));
         //pour mettre la fenêtre au centre 
         setLocationRelativeTo(null);
         setFocusable(true);
+        // quand on click la croix, on ferme l'application
         setDefaultCloseOperation(EXIT_ON_CLOSE);
        
-
+        // création du label "username"
         userLabel = new JLabel(); 
         userLabel.setText("Username: ");
-        userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14)); // la police ne fonctionne pas quand on ajoute en général 
+        // police d'écriture
+        userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        // bonnes dimension: sinon trop petit
         userLabel.setPreferredSize(new Dimension(100, 40));
 
-
+        // création de la zone d'input de l'username
         usernameText = new JTextField(); 
         usernameText.setBackground(new Color(180, 180, 180));
-        usernameText.setPreferredSize(new Dimension(150, 30));
-
-       
+        usernameText.setFont(new Font("Helvetica", Font.PLAIN, 14)); 
+        usernameText.setPreferredSize(new Dimension(150, 30)); 
 
         passwordLabel = new JLabel();
         passwordLabel.setText("Password");
         passwordLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
         passwordLabel.setPreferredSize(new Dimension(100, 30));
 
-
-
+        // création de la zone de mot de passe.
+        // ici police pas intantiée: no need
         passwordField = new JPasswordField();  
         passwordField.setBackground(new Color(180, 180, 180));
         passwordField.setPreferredSize(new Dimension(150, 30));
 
+        // bouton login
         login = new JButton("Log in!"); 
+        // ici l'actionListener est dans une fonction à part, voir (*)
         login.addActionListener(this);
 
 
@@ -105,14 +97,16 @@ public class Authentification extends JFrame implements ActionListener {
             }
         });
 
-
+        // création du contentPane, qui permet de mettre tous les éléments dans un cardre
         JPanel contentPane = (JPanel) this.getContentPane(); 
-
+        // gridBagLayout est utilisé pour pouvoir garder nos preferredSize de nos éléments
         contentPane.setLayout(new GridBagLayout());
+        // permet de positionner les éléments où on veut
         GridBagConstraints gbc = new GridBagConstraints();
-        contentPane.setBackground(new Color(200,180,255));
+        // contentPane.setBackground(new Color(200,180,255));
+        // police d'écriture 
         contentPane.setFont(new Font("Helvetica", Font.PLAIN, 14));
-
+        // premier élément dans la grille: en position (0, 0) de la grille
         gbc.gridx = 0; 
         gbc.gridy = 0; 
         contentPane.add(userLabel, gbc);
@@ -146,14 +140,16 @@ public class Authentification extends JFrame implements ActionListener {
         setVisible(true);  
     }
 
+    // (*)
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+        // on prend les éléments notés par l'ulitisateur: 
         String username = usernameText.getText(); 
         String password = String.valueOf(passwordField.getPassword());
-
+        // on lui attribut
         user.setPassword(password);
         user.setUsername(username);
-
+        // on veut savoir si ses éléments correspondent avec ce qu'on a dans la base de données
         boolean isConnected = data.getUserIdConnection(username, password); 
 
         if(isConnected ==  true) {
