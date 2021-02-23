@@ -1,9 +1,13 @@
 package gytar.Elements;
 
-public class Token {
-    private String color; 
-    private int num; 
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
+
+public class Token {
+    private String color;
+    private int num;
+    private Image image;
     
     public String getColor() {
         return color;
@@ -20,11 +24,21 @@ public class Token {
     public void initYellowToken(){
         this.color = "Y";
         this.num = 0; 
+        ImageIcon ii = new ImageIcon("Elements/ressources/yellowToken.png");
+        image = ii.getImage(); 
+        
     }
+
+    public Image getImage() {
+        return image;
+    }
+    
 
     public void initRedToken(){
         this.color = "R";
         this.num = 1; 
+        ImageIcon ii = new ImageIcon("Elements/ressources/redToken.png");
+        image = ii.getImage(); 
     }
 
     public void printToken(){
