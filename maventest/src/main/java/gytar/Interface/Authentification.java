@@ -42,12 +42,12 @@ public class Authentification extends JFrame implements ActionListener {
          super("Authentification");
          this.setSize(1000, 700);
          init(user); 
-    }   
+    } 
+    
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-       
-
+        
         String username = usernameText.getText(); 
         String password = String.valueOf(passwordField.getPassword());
         boolean isConnected = data.getUserIdConnection(username, password);
@@ -59,7 +59,7 @@ public class Authentification extends JFrame implements ActionListener {
             message.setText("Invalid username or password...");
         }
 
-        new Board(MainInt.user); 
+        new Menu(MainInt.user); // créer une autre classe un peu comme main mais différente pour le board (qui a JFrame)
     }
 
     private void init(User user) {

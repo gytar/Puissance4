@@ -8,6 +8,7 @@ public class Token {
     private String color;
     private int num;
     private Image image;
+    private ImageIcon icon; 
     
     public String getColor() {
         return color;
@@ -24,21 +25,25 @@ public class Token {
     public void initYellowToken(){
         this.color = "Y";
         this.num = 0; 
-        ImageIcon ii = new ImageIcon("Elements/ressources/yellowToken.png");
-        image = ii.getImage(); 
+        icon = new ImageIcon("/home/gytar/Documents/Dev/p4-cf/Puissance4/maventest/src/main/java/gytar/Elements/ressources/yellowToken.png");
+        image = icon.getImage(); 
         
     }
 
     public Image getImage() {
         return image;
     }
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
     
 
     public void initRedToken(){
         this.color = "R";
         this.num = 1; 
-        ImageIcon ii = new ImageIcon("Elements/ressources/redToken.png");
-        image = ii.getImage(); 
+        icon = new ImageIcon("/home/gytar/Documents/Dev/p4-cf/Puissance4/maventest/src/main/java/gytar/Elements/ressources/redToken.png");
+        image = icon.getImage(); 
     }
 
     public void printToken(){

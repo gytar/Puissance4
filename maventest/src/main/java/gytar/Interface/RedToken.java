@@ -16,9 +16,7 @@ public class RedToken {
 
     private void loadImage() {
         ImageIcon ii = new ImageIcon("/home/gytar/Documents/Dev/p4-cf/Puissance4/maventest/src/main/java/gytar/Interface/ressources/redToken.png"); 
-        image = ii.getImage(); 
-  
-        
+        image = ii.getImage();         
     }
 
     public void move() {

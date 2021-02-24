@@ -28,6 +28,8 @@ public class Grid {
                 this.grid[i][j].setContenant(".");
                 this.grid[i][j].setX(j);
                 this.grid[i][j].setY(i);
+                
+                
             }
         }
         return grid; 

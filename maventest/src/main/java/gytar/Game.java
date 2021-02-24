@@ -73,7 +73,7 @@ public class Game {
                     
                     System.out.print(user.getUsername() + "'s turn! \nEnter choice (1-7): ");
                     userInput = sc.nextLine();
-                    for(int i = 0; i < digits.length; i++){
+                    for(int i = 0; i < digits.length; i++) {
                         if(userInput.equals(digits[i])){
                             // si c'est dans le tableau de chiffres, on le traduit en integer pour la suite.
                             userChoice = Integer.parseInt(userInput); 
@@ -181,7 +181,7 @@ public class Game {
 
         //condition de victoire dans le sens horizontal
         for(int i = 0; i < 6; i++) {
-            if(victory) break;
+            if(victory == true) {break;}
             // au changement de ligne on rétablit le compte à 0 
             champion = 0; 
 
@@ -200,7 +200,7 @@ public class Game {
         }
         // condition de vicoire dans le sens vertical
         for(int i = 0; i < 7; i++) {
-            if(victory) break; 
+            if(victory == true) {break;} 
             // au changement de colonne, on rétablit le compte à 0
             champion = 0;
 
