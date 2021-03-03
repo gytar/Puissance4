@@ -22,6 +22,8 @@ public class Board extends JPanel implements ActionListener {
     int turn = 0; 
     boolean won = false; 
 
+    public static String winner; 
+
     public Board(User user) {
         initBoard();
 
@@ -60,7 +62,9 @@ public class Board extends JPanel implements ActionListener {
 
         won = logic.addDataAtTheEndOfGame(grid, MainInt.user, red, yellow, won); 
         
-        
+        if(won) {
+            new EndofGame(); 
+        }
     
     }
 

@@ -7,7 +7,8 @@ import javax.swing.*;
 public class Menu extends JFrame {
     
     private static final long serialVersionUID = 1L;
-
+    public static String message; 
+    public static JLabel theMessage; 
  
 
     public Menu(User user) {
@@ -18,7 +19,7 @@ public class Menu extends JFrame {
         
         getContentPane().setBackground(new Color(210, 210, 210));
         setSize(new Dimension(1000, 700));
-        JLabel theMessage = new JLabel(message);
+        theMessage = new JLabel(message);
         theMessage.setFont(new Font("Confortaa", Font.PLAIN, 20));
         
         JPanel contentPane = new JPanel(new GridBagLayout());

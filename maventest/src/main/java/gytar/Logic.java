@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import gytar.DataBase.*;
 import gytar.IA.*;
+import gytar.Interface.*;  
 
 public class Logic {
 
@@ -36,6 +37,8 @@ public class Logic {
                     grid.getGuiGridAtPos(id).getCase(j).getLbl().setIcon(red.getIcon()); 
                     grid.getGuiGridAtPos(id).getCase(j).setContenant("R");
                     grid.setGridAtPos(j, id, red);
+                    Menu.message = "AI's turn";
+                    Menu.theMessage.setText(Menu.message);
                     break;
                 }
             }
@@ -46,6 +49,9 @@ public class Logic {
                     grid.getGuiGridAtPos(id).getCase(j).getLbl().setIcon(yellow.getIcon()); 
                     grid.getGuiGridAtPos(id).getCase(j).setContenant("Y");
                     grid.setGridAtPos(j, id, yellow);
+                    Menu.message = MainInt.user.getUsername() + "'s turn";
+                    Menu.theMessage.setText(Menu.message);
+                    
 
                     break;
                 }
@@ -56,6 +62,7 @@ public class Logic {
     public boolean addDataAtTheEndOfGame(Grid grid, User user, Token red, Token yellow, boolean won) {
         if(hasWon(grid, red)) {
             System.out.println("red has won");
+            Board.winner = MainInt.user.getUsername(); 
             // on ajoute +1 sur le compte de victoire et jeux joués
             int winPlusUn = user.getWinnings() + 1; 
             user.setWinnings(winPlusUn);
@@ -74,7 +81,7 @@ public class Logic {
 
         if(hasWon(grid, yellow)) {
             System.out.println("yellow has won");
-             
+            Board.winner = "AI";  
         
             int losePlusUn = user.getLosings() + 1; 
             // on ajoute +1 sur le compte de défaites et jeux joués 

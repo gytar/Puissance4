@@ -76,19 +76,19 @@ public class Authentification extends JFrame implements ActionListener {
         userLabel = new JLabel(); 
         userLabel.setText("Username: ");
         // police d'écriture
-        userLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
+        userLabel.setFont(new Font("Confortaa", Font.BOLD, 14));
         // bonnes dimension: sinon trop petit
         userLabel.setPreferredSize(new Dimension(100, 40));
 
         // création de la zone d'input de l'username
         usernameText = new JTextField(); 
         usernameText.setBackground(new Color(180, 180, 180));
-        usernameText.setFont(new Font("Helvetica", Font.PLAIN, 14)); 
+        usernameText.setFont(new Font("Confortaa", Font.PLAIN, 14)); 
         usernameText.setPreferredSize(new Dimension(150, 30)); 
 
         passwordLabel = new JLabel();
         passwordLabel.setText("Password");
-        passwordLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
+        passwordLabel.setFont(new Font("Confortaa", Font.BOLD, 14));
         passwordLabel.setPreferredSize(new Dimension(100, 30));
 
         // création de la zone de mot de passe.
@@ -121,7 +121,7 @@ public class Authentification extends JFrame implements ActionListener {
         GridBagConstraints gbc = new GridBagConstraints();
         // contentPane.setBackground(new Color(200,180,255));
         // police d'écriture 
-        contentPane.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        contentPane.setFont(new Font("Confortaa", Font.PLAIN, 14));
         // premier élément dans la grille: en position (0, 0) de la grille
         gbc.gridx = 0; 
         gbc.gridy = 0; 
