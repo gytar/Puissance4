@@ -13,7 +13,7 @@ public class Menu extends JFrame {
     public Menu(User user) {
 
         String username = user.getUsername();
-        String message = username + "'s turn! Enter choice (1-7): ";
+        String message = username + "'s turn!";
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         getContentPane().setBackground(new Color(210, 210, 210));
@@ -37,7 +37,7 @@ public class Menu extends JFrame {
          
         add(contentPane);
 
-        setTitle("Board");
+        setTitle("Menu");
         setSize(1000, 700); 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

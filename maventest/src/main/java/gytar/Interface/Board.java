@@ -2,6 +2,7 @@ package gytar.Interface;
 
 import gytar.DataBase.DataBase;
 import gytar.Elements.*;
+import gytar.*; 
 
 import javax.swing.*;
 
@@ -15,38 +16,52 @@ public class Board extends JPanel implements ActionListener {
     Token red = new Token();
     Token yellow = new Token();  
 
+    Logic logic = new Logic(); 
+
     Grid grid = new Grid(); 
     int turn = 0; 
+    boolean won = false; 
 
     public Board(User user) {
         initBoard();
-        redIcon();
-        yellowIcon(); 
+
+        red.initRedToken();
+        yellow.initYellowToken();
 
     }
     
 
     public void initBoard() {
+        // creattion of the grid
         JPanel g = grid.initGuiGrid();
+        grid.initGrid(); 
         for(int i = 0; i < grid.getGuiGrid().length; i++) {
+            // action command is used to get column's id
+            grid.getGuiGridAtPos(i).getPlay().setActionCommand(""+i);
             grid.getGuiGridAtPos(i).getPlay().addActionListener(this);
         }
         add(g); 
     }
 
-    public ImageIcon redIcon() {
-        red.initRedToken();
-        return red.getIcon();
-    }
-
-    public ImageIcon yellowIcon() {
-        yellow.initYellowToken();
-        return yellow.getIcon();
-    }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) {
-        grid.getGuiGridAtPos(1).getCase(1).getLbl().setIcon(yellow.getIcon());
+    public void actionPerformed(ActionEvent arg0) { 
+        red.initRedToken();
+        yellow.initYellowToken();
+
+        // get the button id
+        int id = Integer.parseInt(arg0.getActionCommand());
+
+        // check whether this is yellow's or red's turn 
+        logic.userTurn(grid, turn, id, red, yellow);
+
+        // turn's over, add 1 to count of turns 
+        turn++;
+
+        won = logic.addDataAtTheEndOfGame(grid, MainInt.user, red, yellow, won); 
+        
+        
+    
     }
 
     @Override

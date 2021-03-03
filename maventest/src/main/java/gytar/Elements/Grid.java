@@ -92,6 +92,7 @@ public class Grid{
             guiGrid[i] = new Column();
             guiGrid[i].initColumn();
             guiGrid[i].setId(i); 
+
             grid.add(guiGrid[i].getLbl());
         }
         grid.setVisible(true);
