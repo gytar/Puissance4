@@ -1,14 +1,10 @@
 package gytar.Interface;
 
 import gytar.Elements.*; 
-
 import  java.awt.*; 
-import java.awt.event.*;
-
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicSliderUI.ComponentHandler; 
 
-public class Menu extends JFrame implements ActionListener {
+public class Menu extends JFrame {
     
     private static final long serialVersionUID = 1L;
 
@@ -37,7 +33,7 @@ public class Menu extends JFrame implements ActionListener {
         gbc.gridy = 1;
         Board b = new Board(user); 
         
-        contentPane.add(b.grille(), gbc); 
+        contentPane.add(b, gbc); 
          
         add(contentPane);
 
@@ -47,12 +43,4 @@ public class Menu extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
-
-    }
-
-     
-    
 }

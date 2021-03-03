@@ -1,9 +1,21 @@
 package gytar.Elements;
 
-public class Grid {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Grid{
     // create the grid from the Case class
     // getters and setters
     private Case[][] grid = new Case[6][7];
+
+    private Column[] guiGrid = new Column[7];
+
+    private int columnClicked; 
+
+
+
+
     // getters and setters
     public Case[][] getGrid() {
         return grid;
@@ -62,4 +74,45 @@ public class Grid {
         }
         return (countDots == 0); // si 0 c'est plein. 
     }
+
+    public void setColumnClicked(int columnClicked) {
+        this.columnClicked = columnClicked;
+    }
+    public int getColumnClicked() {
+        return columnClicked;
+    }
+
+    public JPanel initGuiGrid() {
+        JPanel grid = new JPanel(); 
+        grid.setLayout(new GridLayout(1, 7));
+        grid.setPreferredSize(new Dimension(770, 600));
+        grid.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+
+        for(int i = 0; i < 7; i++) {            
+            guiGrid[i] = new Column();
+            guiGrid[i].initColumn();
+            guiGrid[i].setId(i); 
+            grid.add(guiGrid[i].getLbl());
+        }
+        grid.setVisible(true);
+
+        return grid; 
+
+    }
+
+    public Column getGuiGridAtPos(int numColumn) {
+        return guiGrid[numColumn];
+    }
+    public void setGuiGridAtPos(Column[] guiGrid) {
+        this.guiGrid = guiGrid;
+    }
+
+    public void setGuiGrid(Column[] guiGrid) {
+        this.guiGrid = guiGrid;
+    }
+    public Column[] getGuiGrid() {
+        return guiGrid;
+    }
+
+    
 }

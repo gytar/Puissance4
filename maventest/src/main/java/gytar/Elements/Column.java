@@ -1,17 +1,18 @@
 package gytar.Elements;
 
 import java.awt.*; 
-import java.awt.event.*;
-import javax.swing.*; 
+import javax.swing.*;
 
 
-public class Column implements ActionListener {
+
+public class Column {
     Case[] columnCase = new Case[6]; 
-    JLabel lbl = new JLabel(); 
+    JPanel lbl = new JPanel(); 
     int id; 
     JButton play = new JButton(); 
     ImageIcon defaultIcon = new ImageIcon("/home/gytar/Documents/Dev/p4-cf/Puissance4/maventest/src/main/java/gytar/Elements/ressources/triangle.png"); 
-    
+
+
     public void initColumn() {
         lbl.setPreferredSize(new Dimension(110, 700));
         lbl.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
@@ -25,14 +26,13 @@ public class Column implements ActionListener {
         }
         play = new JButton();
         play.setIcon(defaultIcon); 
-        //play.addActionListener(this);
         lbl.add(play); 
         lbl.setVisible(true);
     }
     public Case getCase(int i) {
         return columnCase[i];
     }
-    public JLabel getLbl() {
+    public JPanel getLbl() {
         return lbl;
     } 
 
@@ -48,8 +48,4 @@ public class Column implements ActionListener {
         return id;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
-        
-    } 
 }
