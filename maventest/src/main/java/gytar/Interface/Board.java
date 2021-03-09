@@ -50,13 +50,10 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent arg0) { 
         red.initRedToken();
         yellow.initYellowToken();
-
         // get the button id
         int id = Integer.parseInt(arg0.getActionCommand());
-
         // check whether this is yellow's or red's turn 
         logic.userTurn(grid, turn, id, red, yellow);
-
         // turn's over, add 1 to count of turns 
         turn++;
 

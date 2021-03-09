@@ -11,6 +11,9 @@ public class EndofGame extends JFrame {
     JLabel winMessage; 
 
     public EndofGame() {
+        
+        
+
         String yellowWinner =  "Ow no, you lost :("; 
         String redWinner = MainInt.user.getUsername() + " has won, GG!! :D";
         String draw = "It's a draw"; 
@@ -18,9 +21,10 @@ public class EndofGame extends JFrame {
         String quit = "I rage quit"; 
         Font myFont = new Font("Confortaa", Font.PLAIN, 14); 
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1000, 700));
-
+        
+        
+        
 
         
         winMessage = new JLabel(); 
@@ -47,17 +51,21 @@ public class EndofGame extends JFrame {
         tryA.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                new Board(MainInt.user); 
+                Board b = new Board(MainInt.user); 
+                b.setVisible(true);
             }
         });
 
         if(Board.winner == MainInt.user.getUsername()) {
+            setTitle("You won");
             getContentPane().setBackground(new Color(0, 200, 0));
             winMessage.setText(redWinner);
         } else if(Board.winner == "AI") {
+            setTitle("You lost");
             getContentPane().setBackground(new Color(200, 0, 0));
             winMessage.setText(yellowWinner);
         } else {
+            setTitle("Draw");
             getContentPane().setBackground(new Color(180, 180, 180));
             winMessage.setText(draw);
         }
@@ -82,8 +90,13 @@ public class EndofGame extends JFrame {
 
         setLocationRelativeTo(null);
         setFocusable(true);
-        pack(); 
         setVisible(true);
+        pack();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        
+
+        
 
     }   
 }
