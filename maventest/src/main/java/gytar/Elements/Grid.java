@@ -13,9 +13,6 @@ public class Grid{
 
     private int columnClicked; 
 
-
-
-
     // getters and setters
     public Case[][] getGrid() {
         return grid;
@@ -39,9 +36,7 @@ public class Grid{
                 this.grid[i][j] = new Case();
                 this.grid[i][j].setContenant(".");
                 this.grid[i][j].setX(j);
-                this.grid[i][j].setY(i);
-                
-                
+                this.grid[i][j].setY(i);  
             }
         }
         return grid; 
@@ -112,7 +107,5 @@ public class Grid{
     }
     public Column[] getGuiGrid() {
         return guiGrid;
-    }
-
-    
+    } 
 }

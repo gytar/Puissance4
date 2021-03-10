@@ -38,5 +38,4 @@ public class IA {
         int number = 1 + (int) (Math.random() * 7);
         return number; 
     }
-
 }

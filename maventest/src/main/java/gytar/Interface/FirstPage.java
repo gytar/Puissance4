@@ -15,9 +15,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
 
-
 public class FirstPage extends JFrame implements ActionListener {
-
 
     public FirstPage(User user) {
         init(user); 
@@ -25,15 +23,12 @@ public class FirstPage extends JFrame implements ActionListener {
 
     private void init(User user) {
 
-        
         setTitle("Hello!");
         setSize(1000, 700);
         setBackground(new Color(0, 0, 128));
         setLocationRelativeTo(null);
         setFocusable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
- 
         
         JPanel paneltitle = new JPanel(); 
         JLabel title = new JLabel("Welcome to the Connect 4!", JLabel.CENTER);
@@ -41,8 +36,6 @@ public class FirstPage extends JFrame implements ActionListener {
         paneltitle.add(title); 
         paneltitle.setBackground(new Color(0,0,200));
         paneltitle.setLocation(500, 0);
-        
-
 
         JPanel panel1 = new JPanel();
         JButton createAccount = new JButton("Create Account");
@@ -59,8 +52,6 @@ public class FirstPage extends JFrame implements ActionListener {
         panel1.add(createAccount); 
         panel1.setBackground(new Color(0,0,200));
 
-        
-
         JPanel panel2 = new JPanel(); 
         JButton login = new JButton("Log In");
         login.setFont(new Font("Helvetica", Font.PLAIN, 14));
@@ -76,8 +67,6 @@ public class FirstPage extends JFrame implements ActionListener {
         panel2.add(login); 
         panel2.setBackground(new Color(0,0,200));
 
-        
-
         int top = 100; 
         int bottom = 600; 
         int left = 250; 
@@ -90,11 +79,8 @@ public class FirstPage extends JFrame implements ActionListener {
         containerPanel.add(panel1);
         containerPanel.add(panel2);
         
-
         add(containerPanel, BorderLayout.NORTH); 
        
-
-
         setVisible(true);
         
     }
@@ -103,7 +89,4 @@ public class FirstPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
-
-    
-
 }
