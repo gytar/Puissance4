@@ -125,7 +125,7 @@ public class DataBase {
             
             for(int i = 0; i < usernames.size(); i++){
                 if((usernames.get(i).equals(username)) && (BCrypt.checkpw(password, passwords.get(i)))){
-                    System.out.println("found combo " + username + ", " + password);
+                    //System.out.println("found combo " + username + ", " + password);
                     connected = true; 
                     break; 
                 }
@@ -176,5 +176,34 @@ public class DataBase {
         }
         
         return user; 
+    }
+
+
+    public ArrayList<String> usernames() {
+        ArrayList<String> usernames = new ArrayList<>(); 
+
+        Connection conn = null; 
+        try {
+            Class.forName(JDBC_DRIVER); 
+
+
+            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD); 
+
+            String query = "SELECT username FROM groupe2.puis4"; 
+
+            Statement stmt = conn.createStatement(); 
+            ResultSet rs = stmt.executeQuery(query);
+
+            while(rs.next()){
+                usernames.add(rs.getString("username")); 
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return usernames; 
     }
 }

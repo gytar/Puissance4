@@ -2,6 +2,7 @@ package gytar.IA;
 
 import gytar.Elements.Token;
 
+
 public class IA {
     private String difficulty; 
     private Token token; 

@@ -14,11 +14,11 @@ public class Main{
         init();
     }
     private void init() {
-        Game game = new Game(); 
+        new Game(); 
 
 
     }
     public static void main(String[] args) {
-        Main game = new Main();
+        new Main();
     }  
 }

@@ -7,6 +7,7 @@ import gytar.Elements.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class CreateAnAccount extends JFrame {
 
@@ -46,19 +47,19 @@ public class CreateAnAccount extends JFrame {
         userLabel = new JLabel();
         userLabel.setText("Username: ");
         // police d'écriture
-        userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        userLabel.setFont(new Font("Confortaa", Font.PLAIN, 14));
         // bonnes dimension: sinon trop petit
         userLabel.setPreferredSize(new Dimension(100, 40));
 
         // création de la zone d'input de l'username
         usernameText = new JTextField();
         usernameText.setBackground(new Color(180, 180, 180));
-        usernameText.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        usernameText.setFont(new Font("Confortaa", Font.PLAIN, 14));
         usernameText.setPreferredSize(new Dimension(150, 30));
 
         passwordLabel = new JLabel();
         passwordLabel.setText("Password");
-        passwordLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        passwordLabel.setFont(new Font("Confortaa", Font.PLAIN, 14));
         passwordLabel.setPreferredSize(new Dimension(100, 30));
 
         // création de la zone de mot de passe.
@@ -76,16 +77,32 @@ public class CreateAnAccount extends JFrame {
                 // on prend les éléments notés par l'ulitisateur:
                 String username = usernameText.getText();
                 String password = String.valueOf(passwordField.getPassword());
-                // on lui attribut
-                user.setPassword(password);
-                user.setUsername(username);
+                ArrayList<String> usernames = data.usernames(); 
+                boolean isFree = true; 
 
-                data.addUserDB(username, password);
+                for(String user: usernames) {
+                    if(user.equals(username)) {
+                        isFree = false; 
+                    }
+                }
 
-                message.setText("Account created !");
+                if(isFree) {
+                    user.setPassword(password);
+                    user.setUsername(username);
+                    data.addUserDB(username, password);
+                    message.setText("Account created !");
 
-                Authentification b = new Authentification(user);
-                b.setVisible(true); 
+                    Authentification b = new Authentification(user);
+                    b.setVisible(true); 
+                }
+                else {
+                    message.setText("Username already taken! Please use another name");
+                    usernameText.setText("");
+                    passwordField.setText("");
+                }
+                
+
+                
             }
         });
 
@@ -110,7 +127,7 @@ public class CreateAnAccount extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         // contentPane.setBackground(new Color(200,180,255));
         // police d'écriture
-        contentPane.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        contentPane.setFont(new Font("Confortaa", Font.PLAIN, 14));
         // premier élément dans la grille: en position (0, 0) de la grille
         gbc.gridx = 0;
         gbc.gridy = 0;

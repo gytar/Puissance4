@@ -2,7 +2,6 @@ package gytar.Elements;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class Grid{
     // create the grid from the Case class

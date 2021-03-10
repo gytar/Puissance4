@@ -23,7 +23,7 @@ public class MainInt extends JFrame {
     public static void main(String[] args) {
 
         EventQueue.invokeLater(() -> {
-            JFrame f = new MainInt(user);
+            new MainInt(user);
             
         });
     }    

@@ -19,6 +19,8 @@ import java.awt.event.*;
 public class FirstPage extends JFrame implements ActionListener {
 
 
+    private static final long serialVersionUID = 1366641395074875476L;
+
     public FirstPage(User user) {
         init(user); 
     }

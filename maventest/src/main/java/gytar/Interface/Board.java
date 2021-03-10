@@ -56,9 +56,9 @@ public class Board extends JPanel implements ActionListener {
         logic.userTurn(grid, turn, id, red, yellow);
         // turn's over, add 1 to count of turns 
         turn++;
-
+        // checks if one or another won
         won = logic.addDataAtTheEndOfGame(grid, MainInt.user, red, yellow, won); 
-        
+        // display end of game window if one has won 
         if(won) {
             new EndofGame(); 
         }

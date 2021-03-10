@@ -2,7 +2,6 @@ package gytar;
 
 import gytar.Elements.*;
 
-import javax.swing.ImageIcon;
 
 import gytar.DataBase.*;
 import gytar.IA.*;
@@ -37,7 +36,7 @@ public class Logic {
                     grid.getGuiGridAtPos(id).getCase(j).getLbl().setIcon(red.getIcon()); 
                     grid.getGuiGridAtPos(id).getCase(j).setContenant("R");
                     grid.setGridAtPos(j, id, red);
-                    Menu.message = "AI's turn";
+                    Menu.message = "Player 2's turn";
                     Menu.theMessage.setText(Menu.message);
                     break;
                 }
@@ -51,8 +50,6 @@ public class Logic {
                     grid.setGridAtPos(j, id, yellow);
                     Menu.message = MainInt.user.getUsername() + "'s turn";
                     Menu.theMessage.setText(Menu.message);
-                    
-
                     break;
                 }
             }
