@@ -2,7 +2,7 @@ package gytar.Interface;
 
 import gytar.DataBase.DataBase;
 import gytar.Elements.*;
-import gytar.*; 
+import gytar.*;
 
 import javax.swing.*;
 
@@ -22,6 +22,7 @@ public class Board extends JPanel implements ActionListener {
     int turn = 0; 
     boolean won = false; 
 
+
     public static String winner; 
 
     public Board(User user) {
@@ -29,6 +30,8 @@ public class Board extends JPanel implements ActionListener {
 
         red.initRedToken();
         yellow.initYellowToken();
+
+        
 
     }
     
@@ -69,4 +72,6 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         
     }
+
+   
 }
